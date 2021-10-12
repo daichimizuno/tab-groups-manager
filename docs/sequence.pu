@@ -1,0 +1,14 @@
+@startuml
+actor User as User
+participant Chrome as Chrome
+participant ChromeExtension as Extension
+participant AutoCreateGroupApp as App
+
+User -> Chrome: Open
+User -> Extension: request install
+Extension <- App: install
+User -> App: set config(url list per group)
+User -> App: start
+Chrome <- App: create group and urls
+
+@enduml
