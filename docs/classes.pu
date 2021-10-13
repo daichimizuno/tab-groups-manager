@@ -1,0 +1,13 @@
+@startuml
+object View
+object Controller
+object Repository
+
+View : settingView = "設定画面"
+Controller : ViewController = "レポジトリとのやりとりを行うController"
+Repository : Model = "タブ名、グループ名、URL"
+Repository : ModelImpl = "Modelを実装するクラス"
+
+Repository <|-- Controller
+Controller <|-- View
+@enduml
