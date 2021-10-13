@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import { Model } from "./model";
 
 const Popup = () => {
+  console.log("popup is opened");
+  const initialModel = Model.makeSample();
+  const [model, setModel] = useState(initialModel);
+
   const [count, setCount] = useState(0);
   const [currentURL, setCurrentURL] = useState<string>();
 
@@ -16,6 +21,7 @@ const Popup = () => {
   }, []);
 
   const changeBackground = () => {
+    console.log("#changeBackground");
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const tab = tabs[0];
       if (tab.id) {
@@ -32,9 +38,26 @@ const Popup = () => {
     });
   };
 
+  const createTab = () => {
+    chrome.tabs.create({
+      url: "https://readouble.com/laravel/5.4/ja/mix.html",
+    });
+  };
+
+  const openOptionPage = () => {
+    chrome.runtime.openOptionsPage(() => {
+      console.log("option page is created")
+    });
+  };
+
   return (
     <>
-      <ul style={{ minWidth: "700px" }}>
+      <button onClick={openOptionPage}>
+        option page
+      </button>
+        
+      
+      <ul style={{ minWidth: "500px" }}>
         <li>Current URL: {currentURL}</li>
         <li>Current Time: {new Date().toLocaleTimeString()}</li>
       </ul>
@@ -44,7 +67,7 @@ const Popup = () => {
       >
         count up
       </button>
-      <button onClick={changeBackground}>change background</button>
+      <button onClick={createTab}>change background</button>
     </>
   );
 };
