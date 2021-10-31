@@ -1,72 +1,90 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-const Options = () => {
-  const [color, setColor] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
-  const [like, setLike] = useState<boolean>(false);
 
-  useEffect(() => {
-    // Restores select box and checkbox state using the preferences
-    // stored in chrome.storage.
-    chrome.storage.sync.get(
-      {
-        favoriteColor: "red",
-        likesColor: true,
-      },
-      (items) => {
-        setColor(items.favoriteColor);
-        setLike(items.likesColor);
-      }
-    );
-  }, []);
+const Options: React.FC = () => {
+  // タブグループを作成する時の変数
+  const [inputGroupName, setInputGroupName] = useState<string>("");
+  const [selectedGroupColor, setSelectedTabGroupColor] =
+    useState<string>("grey");
 
-  const saveOptions = () => {
-    // Saves options to chrome.storage.sync.
-    chrome.storage.sync.set(
-      {
-        favoriteColor: color,
-        likesColor: like,
-      },
-      () => {
-        // Update status to let user know options were saved.
-        setStatus("Options saved.");
-        const id = setTimeout(() => {
-          setStatus("");
-        }, 1000);
-        return () => clearTimeout(id);
-      }
-    );
+  // URLをグループに追加するための変数
+  const [inputUrl, setInputUrl] = useState<string>("");
+  const [selectedUrlGroup, setSelectedUrlGroup] = useState<string>("");
+
+  const saveTabGroup = () => {};
+  const saveUrlGroup = () => {};
+  const _createTabGroupData = () => {};
+  const _createUrlGroupData = () => {};
+
+  const _handleTabGroupNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputGroupName(e.target.value);
+  };
+
+  const _handleTabGroupChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedTabGroupColor(e.target.value);
+  };
+
+  const _handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputUrl(e.target.value);
+  };
+
+  const _handleSelectedUrlGroupChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedUrlGroup(e.target.value);
   };
 
   return (
     <>
-      <div>
-        Favorite color: <select
-          value={color}
-          onChange={(event) => setColor(event.target.value)}
-        >
-          <option value="red">red</option>
-          <option value="green">green</option>
+      <div className="new-tab-group">
+        
+        <p>新しいタブグループを作成</p>
+        <input
+          type="text"
+          name="tabName"
+          value={inputGroupName}
+          placeholder="グループ名"
+          onChange={(e) => _handleTabGroupNameChange(e)}
+        />
+        <select onChange={(e) => _handleTabGroupChange(e)}>
+          <option value="grey">grey</option>
           <option value="blue">blue</option>
+          <option value="red">red</option>
           <option value="yellow">yellow</option>
+          <option value="green">green</option>
+          <option value="pink">pink</option>
+          <option value="purple">purple</option>
+          <option value="cyan">cyan</option>
         </select>
+        <button onClick={_createTabGroupData}>作成</button>
       </div>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            checked={like}
-            onChange={(event) => setLike(event.target.checked)}
-          />
-          I like colors.
-        </label>
+
+      <div className="new-url-to-group">
+        <p>URLをグループに追加</p>
+        <input
+          style={{ width: "300px" }}
+          type="text"
+          name="url"
+          placeholder="URL"
+          onChange={(e) => {
+            _handleUrlChange(e);
+          }}
+        />
+        <select
+          onChange={(e) => {
+            _handleSelectedUrlGroupChange(e);
+          }}
+        >
+          <option value="group">group</option>
+        </select>
+        <button onClick={_createUrlGroupData}>作成</button>
       </div>
-      <div>{status}</div>
-      <button onClick={saveOptions}>Save</button>
     </>
   );
 };
+
+export default Options;
 
 ReactDOM.render(
   <React.StrictMode>
