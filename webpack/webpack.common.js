@@ -7,7 +7,9 @@ module.exports = {
     entry: {
       popup: path.join(srcDir, 'popup.tsx'),
       options: path.join(srcDir, 'options.tsx'),
+      option_page: path.join(srcDir,'option_page.tsx'),
       background: path.join(srcDir, 'background.ts'),
+      storage: path.join(srcDir, 'chrome_storage_access.ts'),
       content_script: path.join(srcDir, 'content_script.tsx'),
     },
     output: {
@@ -18,7 +20,7 @@ module.exports = {
         splitChunks: {
             name: "vendor",
             chunks(chunk) {
-              return chunk.name !== 'background';
+              return chunk.name !== 'background' || chunk.name !== 'storage';
             }
         },
     },
