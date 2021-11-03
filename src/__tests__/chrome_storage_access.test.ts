@@ -1,33 +1,32 @@
-import React from "react";
-import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Option from "../option_page";
-import ChromeStorageAccess from "../chrome_storage_access";
-
-const chrome = {
-  storage: {
-    sync: {
-      set: () => {},
-      get: () => {},
-    },
-  },
-};
-
-const storage = new ChromeStorageAccess();
-const getAllTabGroup = jest.spyOn(storage, "getAllTabGroup");
+import ChromeStorageAccess, { TabGroup } from "../chrome_storage_access";
 
 describe("ChromeStorageAccessのテスト", () => {
-  test("新しいグループが追加できる関数を呼ぶと、getAllTabGroup呼ばれること", () => {
-    const newGroupName = "test";
-    let chromeStorageData: string[] = [newGroupName];
-
-    storage.addNewGroup(newGroupName);
-
-  　getAllTabGroup.mockImplementation((): any => {
-      return chromeStorageData
+  describe('addNewGroup', () => {
+    test("新しいグループが追加できる関数を呼ぶと、syncUpdateLastIndexとgetAllTabGroupが１度ずつ呼ばれること", async () => {
+      const storage = new ChromeStorageAccess();
+      const existTabGruop = [{ id: 1, tabGroupName: "test" }] as TabGroup[];
+      const newTabGruop = { id: 2, tabGroupName: "test2" } as TabGroup;
+      
+      const mockSyncUpdateLastIndex = jest.spyOn(storage, "syncUpdateLastIndex");
+      const mockGetAllTabGroup = jest.spyOn(storage, "getAllTabGroup");
+      
+      mockSyncUpdateLastIndex.mockImplementation((): Promise<number> => {
+        return new Promise((resolve, reject) => {
+          resolve(1);
+        });
+      });
+  
+      mockGetAllTabGroup.mockImplementation((): Promise<TabGroup[]> => {
+        return new Promise((resolve, reject) => {
+          resolve(existTabGruop);
+        });
+      });
+  
+      await storage.addNewGroup(newTabGruop["tabGroupName"] as string);
+     
+      expect(mockSyncUpdateLastIndex).toBeCalledTimes(1);
+      expect(mockGetAllTabGroup).toBeCalledTimes(1);
+      
     });
-
-    expect(getAllTabGroup).toHaveBeenCalledTimes(1);
   });
 });
