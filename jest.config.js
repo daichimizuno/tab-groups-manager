@@ -9,5 +9,5 @@ module.exports = {
   },
   testEnvironment: "jsdom",
   snapshotSerializers: ["enzyme-to-json/serializer"],
-  setupFilesAfterEnv: ["<rootDir>/src/setupEnzyme.ts"],
+  setupFilesAfterEnv: ["<rootDir>/src/jest.setup.ts"],
 };
