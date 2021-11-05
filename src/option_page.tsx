@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import ChromeStorageAccess from "./chrome_storage_access";
+import ChromeStorageAccess, {Color} from "./chrome_storage_access";
 
 const Options: React.FC = () => {
     const chromeStorage = new ChromeStorageAccess()
@@ -17,7 +17,11 @@ const Options: React.FC = () => {
     const saveTabGroup = () => {};
     const saveUrlGroup = () => {};
     const _createTabGroupData = () => {
-      chromeStorage.addNewGroup(inputGroupName)
+      console.log(`selected group color : ${selectedGroupColor}`)
+      if(inputGroupName.length > 0 && selectedGroupColor.length>0){
+        chromeStorage.addNewTabGroup(inputGroupName,selectedGroupColor as Color)
+        // chromeStorage.addTabGroupColor(inputGroupName,selectedGroupColor as Color)
+      }
     };
     const _createUrlGroupData = () => {};
   
