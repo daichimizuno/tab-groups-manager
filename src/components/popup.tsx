@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Model } from "./model";
 
 const Popup = () => {
   console.log("popup is opened");
-  const initialModel = Model.makeSample();
-  const [model, setModel] = useState(initialModel);
 
   const [count, setCount] = useState(0);
   const [currentURL, setCurrentURL] = useState<string>();

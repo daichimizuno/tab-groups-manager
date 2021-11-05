@@ -9,7 +9,6 @@ Array [
       新しいタブグループを作成
     </p>
     <input
-      data-test-id="newTabGroupInput"
       name="tabName"
       onChange={[Function]}
       placeholder="グループ名"
@@ -61,6 +60,7 @@ Array [
       </option>
     </select>
     <button
+      data-testid="createTabGroupButton"
       onClick={[Function]}
     >
       作成
@@ -85,13 +85,7 @@ Array [
     />
     <select
       onChange={[Function]}
-    >
-      <option
-        value="group"
-      >
-        group
-      </option>
-    </select>
+    />
     <button
       onClick={[Function]}
     >
