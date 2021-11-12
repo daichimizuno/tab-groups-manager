@@ -12,7 +12,7 @@ module.exports = {
     background: path.join(srcDir, "background.ts"),
     storage: path.join(srcDir, "chrome_storage_access.ts"),
     content_script: path.join(srcDir, "content_script.tsx"),
-    validations: path.join(srcDir,"utils/validations.ts")
+    validations: path.join(srcDir, "utils/validations.ts"),
   },
   output: {
     path: path.join(__dirname, "../dist/js"),
@@ -21,8 +21,9 @@ module.exports = {
   optimization: {
     splitChunks: {
       name: "vendor",
-      chunks(chunk) {
-        return chunk.name !== "background" || chunk.name !== "storage";
+      chunks:'initial',
+      cacheGroups: {
+        shared: false,
       },
     },
   },
