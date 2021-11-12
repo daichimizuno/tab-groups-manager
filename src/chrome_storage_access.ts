@@ -1,7 +1,11 @@
+import { StorageKeys } from "./storage_keys";
+import { assertIsDefined, AssertIsDefinedError } from "./utils/validations";
+
 export interface TabGroup {
   id: number;
   tabGroupName: string;
   tabColor: Color;
+  urls: string[];
 }
 
 const Color = {
@@ -25,6 +29,7 @@ export default class ChromeStorageAccess {
       id: tabGroupLastIndex,
       tabGroupName: tabName,
       tabColor: tabColor,
+      urls: [],
     } as TabGroup;
 
     tabGroupData.push(newTabGroup);
@@ -32,6 +37,32 @@ export default class ChromeStorageAccess {
     await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {
       console.log(`new tab group is set, name:${tabName}`);
     });
+  };
+
+  addUrlToTabGroup = async (url: string, tabId: number) => {
+    const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
+    if (tabGroupData.length > 0) {
+      const tabGroup = tabGroupData.find((tabGroup) => tabGroup.id === tabId);
+      const tabGroupIndex = tabGroupData.findIndex((tabGroup) => tabGroup.id === tabId);
+
+      try {
+        assertIsDefined(tabGroup);
+
+        // 既存のTabGroupにurlを追加する
+        tabGroup.urls.push(url);
+
+        // TabGroupのリストを新しいものに入れ替える
+        tabGroupData.splice(tabGroupIndex, 1, tabGroup);
+
+        await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {
+          console.log(`new url is set, new TabGroup:${tabGroup}`);
+        });
+      } catch (e) {
+        if (e instanceof AssertIsDefinedError) {
+          throw new AssertIsDefinedError("不明なエラー");
+        }
+      }
+    }
   };
 
   syncUpdateLastIndex = async (): Promise<number> => {
@@ -48,7 +79,7 @@ export default class ChromeStorageAccess {
 
   getTabGroupLastIndex = (): Promise<number> => {
     return new Promise((resolve, reject) => {
-      chrome.storage.sync.get(["tabGroupLastIndex"], (value) => {
+      chrome.storage.sync.get([StorageKeys.TAB_GORUP_LAST_INDEX], (value) => {
         if (chrome.runtime.lastError) {
           throw chrome.runtime.lastError;
         }
@@ -73,7 +104,7 @@ export default class ChromeStorageAccess {
 
   getAllTabGroup = (): Promise<TabGroup[]> => {
     return new Promise((resolve, reject) => {
-      chrome.storage.sync.get(["tabGroup"], (value) => {
+      chrome.storage.sync.get([StorageKeys.TAB_GROUP], (value) => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         }

@@ -1,5 +1,6 @@
 import ChromeStorageAccess, { TabGroup } from "../chrome_storage_access";
 import { chrome } from "jest-chrome";
+import { AssertIsDefinedError } from "../utils/validations";
 
 let store = {} as any;
 const storage = new ChromeStorageAccess();
@@ -8,14 +9,12 @@ const mockGetSync = chrome.storage.sync.get;
 const mockSetSync = chrome.storage.sync.set;
 
 const mockGet = (objToGet: any, callback: any) => {
-  console.log(`before objToGET : ${objToGet} , store : ${JSON.stringify(JSON.stringify(store))}`)
-
-  let defaultValue: any
-  switch(String(Object)){
+  let defaultValue: any;
+  switch (String(Object)) {
     case "tabGroupLastIndex":
-      defaultValue = NaN
+      defaultValue = NaN;
     case "tabGroup":
-      defaultValue = []
+      defaultValue = [];
   }
 
   let res = store[objToGet] === undefined ? { [objToGet]: defaultValue } : { [objToGet]: store[objToGet] };
@@ -40,31 +39,89 @@ beforeEach(() => {
 });
 
 describe("ChromeStorageAccessのテスト", () => {
-  describe("addNewGroup", () => {
-    test("addNewTabGroup関数を呼ぶと、既にstorageに何もない場合、新しくデータが作成されること", async () => {
-      await storage.addNewTabGroup("test", "red");
+  describe("正常系", () => {
+    describe("addNewGroup", () => {
+      test("addNewTabGroup関数を呼ぶと、既にstorageに何もない場合、新しくデータが作成されること", async () => {
+        await storage.addNewTabGroup("test", "red");
 
-      const expcetStorageData = {
-        tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test" }],
-        tabGroupLastIndex: "1",
-      };
-      expect(store).toEqual(expcetStorageData);
+        const expcetStorageData = {
+          tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test", urls: [] }],
+          tabGroupLastIndex: "1",
+        };
+        expect(store).toEqual(expcetStorageData);
+      });
+
+      test("addNewTabGroup関数を呼ぶと、既にstorageにデータがある場合、新しくデータが作成されること", async () => {
+        await storage.addNewTabGroup("test", "red");
+
+        expect(store).toEqual({
+          tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test", urls: [] }],
+          tabGroupLastIndex: "1",
+        });
+        await storage.addNewTabGroup("test2", "grey");
+
+        const expcetStorageData = {
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+            { id: 2, tabColor: "grey", tabGroupName: "test2", urls: [] },
+          ],
+          tabGroupLastIndex: "2",
+        };
+        expect(store).toEqual(expcetStorageData);
+      });
     });
+    describe("addUrlToTabGroup", () => {
+      test("既存のTabGroupにurlを１つ追加できる", async () => {
+        await storage.addNewTabGroup("test", "red");
+        await storage.addUrlToTabGroup("https://google.com", 1);
 
-    test("addNewTabGroup関数を呼ぶと、既にstorageにデータがある場合、新しくデータが作成されること", async () => {
-      await storage.addNewTabGroup("test", "red");
+        expect(store).toEqual({
+          tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test", urls: ["https://google.com"] }],
+          tabGroupLastIndex: "1",
+        });
+      });
 
-      expect(store).toEqual({ tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test" }], tabGroupLastIndex: "1" });
-      await storage.addNewTabGroup("test2", "grey");
+      test("既存のTabGroupにurlを5つ追加できる", async () => {
+        await storage.addNewTabGroup("test", "red");
+        await storage.addUrlToTabGroup("https://google.com", 1);
+        await storage.addUrlToTabGroup("https://google.com", 1);
+        await storage.addUrlToTabGroup("https://google.com", 1);
+        await storage.addUrlToTabGroup("https://google.com", 1);
+        await storage.addUrlToTabGroup("https://google.com", 1);
 
-      const expcetStorageData = {
-        tabGroup: [
-          { id: 1, tabColor: "red", tabGroupName: "test" },
-          { id: 2, tabColor: "grey", tabGroupName: "test2" },
-        ],
-        tabGroupLastIndex: "2",
-      };
-      expect(store).toEqual(expcetStorageData);
+        expect(store).toEqual({
+          tabGroup: [
+            {
+              id: 1,
+              tabColor: "red",
+              tabGroupName: "test",
+              urls: [
+                "https://google.com",
+                "https://google.com",
+                "https://google.com",
+                "https://google.com",
+                "https://google.com",
+              ],
+            },
+          ],
+          tabGroupLastIndex: "1",
+        });
+      });
+    });
+  });
+  describe("異常系", () => {
+    describe("addUrlToTabGroup", () => {
+      test("引数のTabIdでfindしても見つからない場合は、AssertIsDefinedErrorが返される", async () => {
+        await storage.addNewTabGroup("test", "red");
+
+        expect(async () => {
+          await storage.addUrlToTabGroup("https://google.com", 2);
+        }).rejects.toThrow("不明なエラー");
+
+        expect(async () => {
+          await storage.addUrlToTabGroup("https://google.com", 2);
+        }).rejects.toThrow(AssertIsDefinedError);
+      });
     });
   });
 });
