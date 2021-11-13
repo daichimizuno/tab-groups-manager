@@ -24,7 +24,9 @@ describe("option_pageの試験", () => {
       act(() => {
         render(<Options />);
       });
-      const input = screen.getByPlaceholderText("グループ名") as HTMLInputElement;
+      const input = screen.getByPlaceholderText(
+        "グループ名"
+      ) as HTMLInputElement;
       expect(input.value).toBe("");
 
       act(() => {
@@ -38,8 +40,12 @@ describe("option_pageの試験", () => {
       act(() => {
         render(<Options />);
       });
-      const input = screen.getByPlaceholderText("グループ名") as HTMLInputElement;
-      const button = screen.getByTestId("createTabGroupButton") as HTMLButtonElement;
+      const input = screen.getByPlaceholderText(
+        "グループ名"
+      ) as HTMLInputElement;
+      const button = screen.getByTestId(
+        "createTabGroupButton"
+      ) as HTMLButtonElement;
       expect(input.value).toBe("");
 
       act(() => {
@@ -57,8 +63,12 @@ describe("option_pageの試験", () => {
       act(() => {
         render(<Options />);
       });
-      const input = screen.getByPlaceholderText("グループ名") as HTMLInputElement;
-      const button = screen.getByTestId("createTabGroupButton") as HTMLButtonElement;
+      const input = screen.getByPlaceholderText(
+        "グループ名"
+      ) as HTMLInputElement;
+      const button = screen.getByTestId(
+        "createTabGroupButton"
+      ) as HTMLButtonElement;
       expect(input.value).toBe("");
 
       act(() => {
