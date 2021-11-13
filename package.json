@@ -9,7 +9,26 @@
     "clean": "rimraf dist",
     "test": "jest",
     "testu": "jest --updateSnapshot",
-    "style": "prettier --write \"src/**/*.{ts,tsx}\""
+    "style": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.html": [
+      "prettier --write --parser html",
+      "git add"
+    ],
+    "*.css": [
+      "prettier --write --parser css",
+      "git add"
+    ],
+    "*.ts": [
+      "prettier --write \"src/**/*.{ts,tsx}\"",
+      "git add"
+    ],
+    "*.tsx": [
+      "prettier --write \"src/**/*.{ts,tsx}\"",
+      "git add"
+    ]
   },
   "author": "",
   "license": "MIT",
@@ -35,9 +54,11 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
+    "husky": "^0.14.3",
     "jest": "^27.3.1",
     "jest-chrome": "^0.7.2",
     "jsdom": "^18.0.0",
+    "lint-staged": "^7.0.4",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2 ",

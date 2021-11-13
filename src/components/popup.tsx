@@ -43,17 +43,14 @@ const Popup = () => {
 
   const openOptionPage = () => {
     chrome.runtime.openOptionsPage(() => {
-      console.log("option page is created")
+      console.log("option page is created");
     });
   };
 
   return (
     <>
-      <button onClick={openOptionPage}>
-        option page
-      </button>
-        
-      
+      <button onClick={openOptionPage}>option page</button>
+
       <ul style={{ minWidth: "500px" }}>
         <li>Current URL: {currentURL}</li>
         <li>Current Time: {new Date().toLocaleTimeString()}</li>

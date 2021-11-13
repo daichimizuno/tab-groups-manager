@@ -23,7 +23,9 @@ const tabGroupMock = [
 let tree: ReactTestRendererJSON;
 
 beforeEach(() => {
-  tree = renderer.create(<TabGroupComponent tabGroup={tabGroupMock} />).toJSON() as ReactTestRendererJSON;
+  tree = renderer
+    .create(<TabGroupComponent tabGroup={tabGroupMock} />)
+    .toJSON() as ReactTestRendererJSON;
 });
 
 afterEach(() => {});

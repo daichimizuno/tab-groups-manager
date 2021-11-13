@@ -22,7 +22,8 @@ export type Color = typeof Color[keyof typeof Color];
 
 export default class ChromeStorageAccess {
   addNewTabGroup = async (tabName: string, tabColor: Color) => {
-    const tabGroupLastIndex = ((await this.syncUpdateLastIndex()) as number) || 1;
+    const tabGroupLastIndex =
+      ((await this.syncUpdateLastIndex()) as number) || 1;
     const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
 
     const newTabGroup = {
@@ -41,7 +42,9 @@ export default class ChromeStorageAccess {
     const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
     if (tabGroupData.length > 0) {
       const tabGroup = tabGroupData.find((tabGroup) => tabGroup.id === tabId);
-      const tabGroupIndex = tabGroupData.findIndex((tabGroup) => tabGroup.id === tabId);
+      const tabGroupIndex = tabGroupData.findIndex(
+        (tabGroup) => tabGroup.id === tabId
+      );
 
       try {
         assertIsDefined(tabGroup);
@@ -52,7 +55,10 @@ export default class ChromeStorageAccess {
         // TabGroupのリストを新しいものに入れ替える
         tabGroupData.splice(tabGroupIndex, 1, tabGroup);
 
-        await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
+        await chrome.storage.sync.set(
+          { tabGroup: tabGroupData },
+          async () => {}
+        );
       } catch (e) {
         if (e instanceof AssertIsDefinedError) {
           throw new AssertIsDefinedError("不明なエラー");
@@ -80,7 +86,10 @@ export default class ChromeStorageAccess {
           throw chrome.runtime.lastError;
         }
 
-        const index = value.tabGroupLastIndex === undefined ? NaN : Number(value.tabGroupLastIndex);
+        const index =
+          value.tabGroupLastIndex === undefined
+            ? NaN
+            : Number(value.tabGroupLastIndex);
         resolve(index);
       });
     });

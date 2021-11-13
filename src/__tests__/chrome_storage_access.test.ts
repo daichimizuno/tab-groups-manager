@@ -17,7 +17,10 @@ const mockGet = (objToGet: any, callback: any) => {
       defaultValue = [];
   }
 
-  let res = store[objToGet] === undefined ? { [objToGet]: defaultValue } : { [objToGet]: store[objToGet] };
+  let res =
+    store[objToGet] === undefined
+      ? { [objToGet]: defaultValue }
+      : { [objToGet]: store[objToGet] };
 
   callback(res);
 };
@@ -45,7 +48,9 @@ describe("ChromeStorageAccessのテスト", () => {
         await storage.addNewTabGroup("test", "red");
 
         const expcetStorageData = {
-          tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test", urls: [] }],
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+          ],
           tabGroupLastIndex: "1",
         };
         expect(store).toEqual(expcetStorageData);
@@ -55,7 +60,9 @@ describe("ChromeStorageAccessのテスト", () => {
         await storage.addNewTabGroup("test", "red");
 
         expect(store).toEqual({
-          tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test", urls: [] }],
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+          ],
           tabGroupLastIndex: "1",
         });
         await storage.addNewTabGroup("test2", "grey");
@@ -76,7 +83,14 @@ describe("ChromeStorageAccessのテスト", () => {
         await storage.addUrlToTabGroup("https://google.com", 1);
 
         expect(store).toEqual({
-          tabGroup: [{ id: 1, tabColor: "red", tabGroupName: "test", urls: ["https://google.com"] }],
+          tabGroup: [
+            {
+              id: 1,
+              tabColor: "red",
+              tabGroupName: "test",
+              urls: ["https://google.com"],
+            },
+          ],
           tabGroupLastIndex: "1",
         });
       });
