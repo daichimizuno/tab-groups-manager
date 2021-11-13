@@ -2,8 +2,8 @@ import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Options from "../components/option_page";
-import ChromeStorageAccess from "../chrome_storage_access";
+import Options from "../pages/option_page";
+import ChromeStorageAccess from "../dao/chrome_storage_access";
 
 let tree: ReactTestRendererJSON;
 const storage = new ChromeStorageAccess();
