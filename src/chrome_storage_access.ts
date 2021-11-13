@@ -34,9 +34,7 @@ export default class ChromeStorageAccess {
 
     tabGroupData.push(newTabGroup);
 
-    await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {
-      console.log(`new tab group is set, name:${tabName}`);
-    });
+    await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
   };
 
   addUrlToTabGroup = async (url: string, tabId: number) => {
@@ -54,9 +52,7 @@ export default class ChromeStorageAccess {
         // TabGroupのリストを新しいものに入れ替える
         tabGroupData.splice(tabGroupIndex, 1, tabGroup);
 
-        await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {
-          console.log(`new url is set, new TabGroup:${tabGroup}`);
-        });
+        await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
       } catch (e) {
         if (e instanceof AssertIsDefinedError) {
           throw new AssertIsDefinedError("不明なエラー");

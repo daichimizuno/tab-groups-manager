@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ChromeStorageAccess, { Color, TabGroup } from "../chrome_storage_access";
+import { TabGroupComponent } from "./tab_group";
 const Options: React.FC = () => {
   const chromeStorage = new ChromeStorageAccess();
 
-  // DB上のタブグループを保存する変数
+  // DB上のタブグループを保存するための変数
   const [tabGroup, setTabGroup] = useState<TabGroup[]>();
 
   // タブグループを作成する時の変数
@@ -15,10 +16,15 @@ const Options: React.FC = () => {
   const [inputUrl, setInputUrl] = useState<string>("");
   const [selectedTabGroupNumber, setSelectedTabGroupNumber] = useState<number>(1);
 
-  // DB上のTabGroupデータにリストを依存させる
+  // DB上のTabGroupデータにView側のリストを依存させる
   useEffect(() => {
     getTabGroupData();
   }, [tabGroup]);
+
+  // useEffectのためにDBとのTabGroupデータを動悸させる
+  const syncTabGroup = () => {
+    getTabGroupData();
+  };
 
   const getTabGroupData = async () => {
     let returnTabGroup = await chromeStorage.getAllTabGroup();
@@ -33,11 +39,20 @@ const Options: React.FC = () => {
       await chromeStorage.addNewTabGroup(inputGroupName, selectedGroupColor as Color);
     }
 
-    // DBとのTabGroupデータを動悸させる
-    getTabGroupData();
+    syncTabGroup();
   };
-  const _createUrlGroupData = () => {
-    chromeStorage.addUrlToTabGroup(inputUrl, selectedTabGroupNumber);
+  const _createUrlGroupData = async () => {
+    await chromeStorage.addUrlToTabGroup(inputUrl, selectedTabGroupNumber);
+
+    syncTabGroup();
+  };
+
+  const _haveTabGroup = (): boolean => {
+    if (tabGroup !== undefined && tabGroup.length !== 0) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -85,11 +100,17 @@ const Options: React.FC = () => {
           {tabGroup?.map((tab) => {
             let tabId = tab.id;
             let tabName = tab.tabGroupName;
-            return <option value={tabId} key={tabId}>{tabName}</option>;
+            return (
+              <option value={tabId} key={tabId}>
+                {tabName}
+              </option>
+            );
           })}
         </select>
         <button onClick={_createUrlGroupData}>作成</button>
       </div>
+
+      {_haveTabGroup() ? <TabGroupComponent tabGroup={tabGroup}> /</TabGroupComponent> : <div></div>}
     </>
   );
 };
