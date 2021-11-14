@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import ChromeStorageAccess, {
-  Color,
-  TabGroup,
-} from "../dao/chrome_storage_access";
-import { CreateTabGroupComponent } from "../components/create_tab_group";
-import { CreateTabUrlComponent } from "../components/create_tab_urls";
-import { TabGroupComponent } from "../components/tab_group";
+import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
+import { CreateTabGroupComponent } from "./components/create_tab_group";
+import { CreateTabUrlComponent } from "./components/create_tab_urls";
+import { TabGroupComponent } from "./components/tab_group";
+import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
+
 const Options: React.FC = () => {
   const chromeStorage = new ChromeStorageAccess();
+  const chromeTabAccess = new ChromeTabAccess();
 
   // DB上のタブグループを保存するための変数
   const [tabGroup, setTabGroup] = useState<TabGroup[]>();
