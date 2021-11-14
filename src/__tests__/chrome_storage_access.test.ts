@@ -1,4 +1,4 @@
-import ChromeStorageAccess, { TabGroup } from "../chrome_storage_access";
+import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
 import { chrome } from "jest-chrome";
 import { AssertIsDefinedError } from "../utils/validations";
 

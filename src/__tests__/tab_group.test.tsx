@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { tab } from "@testing-library/user-event/dist/tab";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import { TabGroup } from "../chrome_storage_access";
+import { TabGroup } from "../dao/chrome_storage_access";
 import { TabGroupComponent } from "../components/tab_group";
 
 const tabGroupMock = [

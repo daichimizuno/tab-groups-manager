@@ -5,13 +5,11 @@ const srcDir = path.join(__dirname, "..", "src");
 
 module.exports = {
   entry: {
-    storage_key: path.join(srcDir, "storage_keys.ts"),
-    popup: path.join(srcDir, "components/popup.tsx"),
-    options: path.join(srcDir, "components/options_root.tsx"),
-    option_page: path.join(srcDir, "components/option_page.tsx"),
-    background: path.join(srcDir, "background.ts"),
-    storage: path.join(srcDir, "chrome_storage_access.ts"),
-    content_script: path.join(srcDir, "content_script.tsx"),
+    popup: path.join(srcDir, "pages/popup.tsx"),
+    options: path.join(srcDir, "pages/options_root.tsx"),
+    option_page: path.join(srcDir, "pages/option_page.tsx"),
+    storage_key: path.join(srcDir, "dao/storage_keys.ts"),
+    storage: path.join(srcDir, "dao/chrome_storage_access.ts"),
     validations: path.join(srcDir, "utils/validations.ts"),
   },
   output: {

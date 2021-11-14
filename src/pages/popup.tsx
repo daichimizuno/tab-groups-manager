@@ -49,7 +49,7 @@ const Popup = () => {
 
   return (
     <>
-      <button onClick={openOptionPage}>option page</button>
+      <button onClick={openOptionPage}>option pages</button>
 
       <ul style={{ minWidth: "500px" }}>
         <li>Current URL: {currentURL}</li>
