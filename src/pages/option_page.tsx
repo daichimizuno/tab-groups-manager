@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
-import { CreateTabGroupComponent } from "./components/create_tab_group";
-import { CreateTabUrlComponent } from "./components/create_tab_urls";
-import { TabGroupComponent } from "./components/tab_group";
+import ChromeStorageAccess, {
+  Color,
+  TabGroup,
+} from "../dao/chrome_storage_access";
+import CreateTabGroupComponent from "./components/create_tab_group";
+import CreateTabUrlComponent from "./components/create_tab_url";
+import TabGroupComponent from "./components/tab_group";
+import Box from "@mui/system/Box";
 import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
 
 const Options: React.FC = () => {
@@ -23,6 +27,16 @@ const Options: React.FC = () => {
     getTabGroupData();
   };
 
+  const createTabGroup = async (groupName: string, groupColor: Color) => {
+    await chromeStorage.addNewTabGroup(groupName, groupColor);
+    syncTabGroup();
+  };
+
+  const createUrl = async (url: string, groupNumber: number) => {
+    await chromeStorage.addUrlToTabGroup(url, groupNumber);
+    syncTabGroup();
+  };
+
   const getTabGroupData = async () => {
     let returnTabGroup = await chromeStorage.getAllTabGroup();
     if (JSON.stringify(tabGroup) !== JSON.stringify(returnTabGroup)) {
@@ -30,7 +44,7 @@ const Options: React.FC = () => {
     }
   };
 
-  const _haveTabGroup = (): boolean => {
+  const haveTabGroup = (): boolean => {
     if (tabGroup !== undefined && tabGroup.length !== 0) {
       return true;
     } else {
@@ -40,17 +54,27 @@ const Options: React.FC = () => {
 
   return (
     <>
-      <CreateTabGroupComponent createTab={() => syncTabGroup()} />
-      <CreateTabUrlComponent
-        tabGroup={tabGroup}
-        createUrl={() => syncTabGroup()}
-      />
+      <Box m={2} pt={3}>
+        <CreateTabGroupComponent
+          createTab={(groupName: string, groupColor: Color) =>
+            createTabGroup(groupName, groupColor)
+          }
+        />
 
-      {_haveTabGroup() ? (
-        <TabGroupComponent tabGroup={tabGroup}> /</TabGroupComponent>
-      ) : (
-        <div></div>
-      )}
+        <CreateTabUrlComponent
+          haveTabGroup={haveTabGroup()}
+          tabGroup={tabGroup}
+          createUrl={(url: string, groupNumber: number) =>
+            createUrl(url, groupNumber)
+          }
+        />
+
+        {haveTabGroup() ? (
+          <TabGroupComponent tabGroup={tabGroup}> /</TabGroupComponent>
+        ) : (
+          <div></div>
+        )}
+      </Box>
     </>
   );
 };

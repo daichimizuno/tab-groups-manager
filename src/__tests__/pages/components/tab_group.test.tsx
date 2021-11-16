@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { tab } from "@testing-library/user-event/dist/tab";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import { TabGroup } from "../dao/chrome_storage_access";
-import { TabGroupComponent } from "../pages/components/tab_group";
+import { TabGroup } from "../../../dao/chrome_storage_access";
+import TabGroupComponent from "../../../pages/components/tab_group";
 
 const tabGroupMock = [
   {
@@ -41,14 +41,6 @@ describe("tab_groupのテスト", () => {
         render(<TabGroupComponent tabGroup={tabGroupMock} />);
       });
 
-      const tabData1Node = screen.getAllByTestId(1) as any;
-      const tabData2Node = screen.getAllByTestId(2) as any;
-
-      expect(tabData1Node.length).toBe(4);
-      expect(tabData2Node.length).toBe(4);
-
-      expect(screen.getByText("1")).toBeTruthy();
-      expect(screen.getByText("2")).toBeTruthy();
       expect(screen.getByText("テスト")).toBeTruthy();
       expect(screen.getByText("テスト2")).toBeTruthy();
       expect(screen.getByText("grey")).toBeTruthy();

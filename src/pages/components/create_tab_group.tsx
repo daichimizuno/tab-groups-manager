@@ -1,57 +1,88 @@
-import React, { useEffect, useState } from "react";
-import ChromeStorageAccess, {
-  Color,
-  TabGroup,
-} from "../../dao/chrome_storage_access";
+import React, { useState } from "react";
+import ChromeStorageAccess, { Color } from "../../dao/chrome_storage_access";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
-export const CreateTabGroupComponent = (props: any) => {
+export const color = [
+  "grey",
+  "blue",
+  "red",
+  "yellow",
+  "green",
+  "pink",
+  "purple",
+  "cyan",
+] as Color[];
+
+const CreateTabGroupComponent = (props: any) => {
   const chromeStorage = new ChromeStorageAccess();
 
   // タブグループを作成する時の変数
   const [inputGroupName, setInputGroupName] = useState<string>("");
   const [selectedGroupColor, setSelectedTabGroupColor] =
-    useState<string>("grey");
+    useState<Color>("grey");
 
-  const _createTabGroupData = async () => {
+  const _createTabGroupData = () => {
     if (inputGroupName.length > 0 && selectedGroupColor.length > 0) {
+      props.createTab(inputGroupName, selectedGroupColor);
       setInputGroupName("");
-      await chromeStorage.addNewTabGroup(
-        inputGroupName,
-        selectedGroupColor as Color
-      );
     }
-
-    props.createTab();
   };
 
   return (
     <>
-      <div className="new-tab-group">
-        <p>新しいタブグループを作成</p>
-        <input
+      <Typography data-testid="title" mb={4}>
+        新しいタブグループを作成
+      </Typography>
+      <Stack direction="row" spacing={5}>
+        <TextField
+          id="groupName"
           type="text"
-          name="tabName"
+          name="groupName"
           value={inputGroupName}
-          placeholder="グループ名"
+          label="グループ名"
+          variant="outlined"
           onChange={(e) => setInputGroupName(e.target.value)}
         />
-        <select onChange={(e) => setSelectedTabGroupColor(e.target.value)}>
-          <option value="grey">grey</option>
-          <option value="blue">blue</option>
-          <option value="red">red</option>
-          <option value="yellow">yellow</option>
-          <option value="green">green</option>
-          <option value="pink">pink</option>
-          <option value="purple">purple</option>
-          <option value="cyan">cyan</option>
-        </select>
-        <button
+
+        <FormControl sx={{ width: 100 }}>
+          <InputLabel id="simple-select-label">Color</InputLabel>
+          <Select
+            value={selectedGroupColor}
+            defaultValue={selectedGroupColor}
+            label="Color"
+            onChange={(e) => setSelectedTabGroupColor(e.target.value as Color)}
+          >
+            {color.map((c, index) => {
+              return (
+                <MenuItem key={c} value={c}>
+                  {c}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+
+        <Button
           data-testid="createTabGroupButton"
+          startIcon={<AddIcon />}
+          variant="outlined"
           onClick={_createTabGroupData}
         >
           作成
-        </button>
-      </div>
+        </Button>
+      </Stack>
     </>
   );
 };
+
+export default CreateTabGroupComponent;

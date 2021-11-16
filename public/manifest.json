@@ -16,12 +16,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "js/vendor.js"
-      ]
+      "matches": ["<all_urls>"],
+      "js": ["js/vendor.js"]
     }
   ],
   "permissions": [
