@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChromeStorageAccess, {
   Color,
   TabGroup,
-} from "../dao/chrome_storage_access";
+} from "../../dao/chrome_storage_access";
 
 export const CreateTabUrlComponent = (props: any) => {
   const chromeStorage = new ChromeStorageAccess();

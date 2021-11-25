@@ -1,44 +1,31 @@
 import React, { useEffect, useState } from "react";
+import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
 import ReactDOM from "react-dom";
+import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 const Popup = () => {
-  console.log("popup is opened");
+  const chromeStorage = new ChromeStorageAccess();
+  const chromeTabAccess = new ChromeTabAccess();
 
-  const [count, setCount] = useState(0);
-  const [currentURL, setCurrentURL] = useState<string>();
-
-  useEffect(() => {
-    chrome.action.setBadgeText({ text: count.toString() });
-  }, [count]);
+  // DB上のタブグループを保存するための変数
+  const [tabGroup, setTabGroup] = useState<TabGroup[]>();
 
   useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      setCurrentURL(tabs[0].url);
-    });
-  }, []);
+    getTabGroupData();
+  }, [tabGroup]);
 
-  const changeBackground = () => {
-    console.log("#changeBackground");
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      const tab = tabs[0];
-      if (tab.id) {
-        chrome.tabs.sendMessage(
-          tab.id,
-          {
-            color: "#555555",
-          },
-          (msg) => {
-            console.log("result message:", msg);
-          }
-        );
-      }
-    });
+  const getTabGroupData = async () => {
+    let returnTabGroup = await chromeStorage.getAllTabGroup();
+    if (JSON.stringify(tabGroup) !== JSON.stringify(returnTabGroup)) {
+      setTabGroup(returnTabGroup);
+    }
   };
 
-  const createTab = () => {
-    chrome.tabs.create({
-      url: "https://readouble.com/laravel/5.4/ja/mix.html",
-    });
+  const openTabs = () => {
+    if (tabGroup !== undefined && tabGroup.length > 0) {
+      chromeTabAccess.createTabGroup(tabGroup);
+    }
   };
 
   const openOptionPage = () => {
@@ -49,19 +36,8 @@ const Popup = () => {
 
   return (
     <>
-      <button onClick={openOptionPage}>option pages</button>
-
-      <ul style={{ minWidth: "500px" }}>
-        <li>Current URL: {currentURL}</li>
-        <li>Current Time: {new Date().toLocaleTimeString()}</li>
-      </ul>
-      <button
-        onClick={() => setCount(count + 1)}
-        style={{ marginRight: "5px" }}
-      >
-        count up
-      </button>
-      <button onClick={createTab}>change background</button>
+      <button onClick={openTabs}>open TabGroup</button>
+      <button onClick={openOptionPage}>setting page</button>
     </>
   );
 };

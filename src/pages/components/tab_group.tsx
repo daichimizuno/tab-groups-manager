@@ -1,5 +1,5 @@
 import React from "react";
-import { TabGroup } from "../dao/chrome_storage_access";
+import { TabGroup } from "../../dao/chrome_storage_access";
 
 export const TabGroupComponent = (props: any) => {
   const tabGroup = props.tabGroup;
