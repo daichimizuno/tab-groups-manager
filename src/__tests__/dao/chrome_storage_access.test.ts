@@ -1,6 +1,6 @@
-import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
+import ChromeStorageAccess, { TabGroup } from "../../dao/chrome_storage_access";
 import { chrome } from "jest-chrome";
-import { AssertIsDefinedError } from "../utils/validations";
+import { AssertIsDefinedError } from "../../utils/validations";
 
 let store = {} as any;
 const storage = new ChromeStorageAccess();

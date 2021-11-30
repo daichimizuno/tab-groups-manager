@@ -11,7 +11,7 @@ module.exports = {
     storage_key: path.join(srcDir, "dao/storage_keys.ts"),
     storage: path.join(srcDir, "dao/chrome_storage_access.ts"),
     validations: path.join(srcDir, "utils/validations.ts"),
-    chrome_tab_background_worker: path.join(srcDir,"utils/chrome_tab_utils/chrome_tab_background_worker.ts")
+    chrome_tab_background_worker: path.join(srcDir, "utils/chrome_tab_utils/chrome_tab_background_worker.ts"),
   },
   output: {
     path: path.join(__dirname, "../dist/js"),
@@ -20,7 +20,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       name: "vendor",
-      chunks: 'all',
+      chunks: "all",
       minSize: 20000,
       minRemainingSize: 0,
       minChunks: 1,
@@ -59,4 +59,5 @@ module.exports = {
       options: {},
     }),
   ],
+  performance: { hints: false },
 };

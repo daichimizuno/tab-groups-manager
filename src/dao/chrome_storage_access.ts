@@ -1,5 +1,6 @@
 import { StorageKeys } from "./storage_keys";
 import { assertIsDefined, AssertIsDefinedError } from "../utils/validations";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 export interface TabGroup {
   id: number;
