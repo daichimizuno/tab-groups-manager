@@ -41,10 +41,12 @@
     "@emotion/styled": "^11.6.0",
     "@fontsource/roboto": "^4.5.1",
     "@mui/icons-material": "^5.2.0",
+    "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.1",
     "@types/chrome": "0.0.162",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
@@ -55,7 +57,9 @@
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-swipeable-views": "^0.13.1",
     "@types/react-test-renderer": "^17.0.1",
+    "@types/styled-components": "^5.1.16",
     "copy-webpack-plugin": "^9.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -66,6 +70,7 @@
     "jsdom": "^18.0.0",
     "lint-staged": "^7.0.4",
     "prettier": "^2.2.1",
+    "react-swipeable-views": "^0.14.0",
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2 ",
     "ts-jest": "^27.0.7",

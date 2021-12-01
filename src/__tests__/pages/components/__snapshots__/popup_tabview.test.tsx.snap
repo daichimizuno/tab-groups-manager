@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopupTabViewの試験 コンポーネントテスト 正常系 スナップショットが前回の結果と一致しているかどうか 1`] = `
+<div
+  className="MuiBox-root css-1d1mvob"
+>
+  <div
+    className="MuiBox-root css-1gsv261"
+  >
+    <div
+      className="MuiTabs-root css-1ujnqem-MuiTabs-root"
+      data-testid="tab-list"
+    >
+      <div
+        className="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+        onScroll={[Function]}
+        style={
+          Object {
+            "marginBottom": -0,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <div
+          aria-label="tab-list"
+          aria-orientation={null}
+          className="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+          onKeyDown={[Function]}
+          role="tablist"
+        >
+          <button
+            aria-controls={null}
+            aria-selected={true}
+            className="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1vw5i9y-MuiButtonBase-root-MuiTab-root"
+            disabled={false}
+            id={null}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="tab"
+            tabIndex={0}
+            type="button"
+          >
+            開いているタブ
+            <span
+              className="MuiTabs-indicator css-11yukd5-MuiTabs-indicator"
+              style={Object {}}
+            />
+          </button>
+          <button
+            aria-controls={null}
+            aria-selected={false}
+            className="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1vw5i9y-MuiButtonBase-root-MuiTab-root"
+            disabled={false}
+            id={null}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="tab"
+            tabIndex={-1}
+            type="button"
+          >
+            保存されている設定
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-labelledby={null}
+    className="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
+    hidden={false}
+    id={null}
+    role="tabpanel"
+  >
+    Item One
+  </div>
+  <div
+    aria-labelledby={null}
+    className="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
+    hidden={true}
+    id={null}
+    role="tabpanel"
+  />
+</div>
+`;

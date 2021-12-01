@@ -30,7 +30,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -52,7 +51,7 @@ const TabGroupTable = (props: any) => {
         <TableBody>
           {tabGroup.map((tab) => (
             <StyledTableRow
-              key={tab.id}
+              key={tab.tabGroupName}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <StyledTableCell component="th" scope="row">
