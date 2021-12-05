@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
 import ReactDOM from "react-dom";
 import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
-import { tab } from "@testing-library/user-event/dist/tab";
+import PopupTabView from "./components/popup_tabview";
+import styled from "styled-components";
 
 const Popup = () => {
   const chromeStorage = new ChromeStorageAccess();
@@ -28,16 +29,10 @@ const Popup = () => {
     }
   };
 
-  const openOptionPage = () => {
-    chrome.runtime.openOptionsPage(() => {
-      console.log("option page is created");
-    });
-  };
-
   return (
     <>
       <button onClick={openTabs}>open TabGroup</button>
-      <button onClick={openOptionPage}>setting page</button>
+      <PopupTabView />
     </>
   );
 };

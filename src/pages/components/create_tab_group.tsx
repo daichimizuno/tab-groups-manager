@@ -6,6 +6,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   Stack,
   TextField,
   Typography,
@@ -28,12 +29,11 @@ const CreateTabGroupComponent = (props: any) => {
 
   // タブグループを作成する時の変数
   const [inputGroupName, setInputGroupName] = useState<string>("");
-  const [selectedGroupColor, setSelectedTabGroupColor] =
-    useState<Color>("grey");
+  const [selectedColor, setSelectedColor] = useState<string>("grey" as Color);
 
   const _createTabGroupData = () => {
-    if (inputGroupName.length > 0 && selectedGroupColor.length > 0) {
-      props.createTab(inputGroupName, selectedGroupColor);
+    if (inputGroupName.length > 0 && selectedColor.length > 0) {
+      props.createTab(inputGroupName, selectedColor);
       setInputGroupName("");
     }
   };
@@ -57,15 +57,14 @@ const CreateTabGroupComponent = (props: any) => {
         <FormControl sx={{ width: 100 }}>
           <InputLabel id="simple-select-label">Color</InputLabel>
           <Select
-            value={selectedGroupColor}
-            defaultValue={selectedGroupColor}
+            value={selectedColor}
             label="Color"
-            onChange={(e) => setSelectedTabGroupColor(e.target.value as Color)}
+            onChange={(e) => setSelectedColor(e.target.value)}
           >
-            {color.map((c, index) => {
+            {color.map((color: Color, index: number) => {
               return (
-                <MenuItem key={c} value={c}>
-                  {c}
+                <MenuItem key={color} value={color}>
+                  {color}
                 </MenuItem>
               );
             })}
