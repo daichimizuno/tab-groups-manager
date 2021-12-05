@@ -36,50 +36,30 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const TabGroupTable = (props: any) => {
-  const tabGroup = props.tabGroup as TabGroup[];
+  const tabGroups = props.tabGroup as TabGroup[];
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <StyledTableRow>
-            <StyledTableCell align="right">タブ名</StyledTableCell>
-            <StyledTableCell align="right">タブの色</StyledTableCell>
-            <StyledTableCell align="right">URL</StyledTableCell>
-          </StyledTableRow>
+          <TableRow>
+            <TableCell>タブ名</TableCell>
+            <TableCell align="right">タブ色</TableCell>
+            <TableCell align="right">url</TableCell>
+          </TableRow>
         </TableHead>
         <TableBody>
-          {tabGroup.map((tab) => (
-            <StyledTableRow
-              key={tab.tabGroupName}
+          {tabGroups.map((tabGroup) => (
+            <TableRow
+              key={tabGroup.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <StyledTableCell component="th" scope="row">
-                {tab.tabGroupName}
-              </StyledTableCell>
-              <StyledTableCell align="right">{tab.tabColor}</StyledTableCell>
-              <List sx={style} component="nav" aria-label="mailbox folders">
-                <ListItem button>
-                  <ListItemText primary="Inbox" />
-                </ListItem>
-                <Divider />
-                <ListItem button divider>
-                  <ListItemText primary="Drafts" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Trash" />
-                </ListItem>
-                <Divider light />
-                <ListItem button>
-                  <ListItemText primary="Spam" />
-                </ListItem>
-              </List>
-              <StyledTableCell align="right">
-                {tab.urls.map((url) => {
-                  return <p>{url}</p>;
-                })}
-              </StyledTableCell>
-            </StyledTableRow>
+              <TableCell component="th" scope="row">
+                {tabGroup.tabGroupName}
+              </TableCell>
+              <TableCell align="right">{tabGroup.tabColor}</TableCell>
+              <TableCell align="right">{tabGroup.urls}</TableCell>
+            </TableRow>
           ))}
         </TableBody>
       </Table>

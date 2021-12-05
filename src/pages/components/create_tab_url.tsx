@@ -8,23 +8,42 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TabGroup } from "../../dao/chrome_storage_access";
 import AddIcon from "@mui/icons-material/Add";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 const CreateTabUrlComponent = (props: any) => {
   const tabGroup = props.tabGroup as TabGroup[];
   const haveTabGroup = props.haveTabGroup as boolean;
 
   const [inputUrl, setInputUrl] = useState<string>("");
-  const [selectedTabGroupNumber, setSelectedTabGroupNumber] =
-    useState<number>(1);
+  const [selectedTabGroup, setSelectedTabGroup] = useState<string>("");
 
   const _createUrlGroupData = () => {
     if (inputUrl.length > 0) {
-      props.createUrl(inputUrl, selectedTabGroupNumber);
+      let index: number;
+      if (selectedTabGroup === "") {
+        index = _indexTabGroupNumber(tabGroup[0].tabGroupName);
+      } else {
+        index = _indexTabGroupNumber(selectedTabGroup);
+      }
+
+      props.createUrl(inputUrl, index);
       setInputUrl("");
     }
+  };
+
+  const _indexTabGroupNumber = (name: string): number => {
+    let tabGroupNumber = -1;
+    tabGroup.map((tab, index) => {
+      if (tab.tabGroupName === name) {
+        // 配列のインデックスは0から始まるので、+1する
+        tabGroupNumber = index + 1;
+      }
+    });
+
+    return tabGroupNumber;
   };
 
   return (
@@ -42,33 +61,29 @@ const CreateTabUrlComponent = (props: any) => {
           variant="outlined"
           onChange={(e) => setInputUrl(e.target.value)}
         />
+        {haveTabGroup ? (
+          <FormControl sx={{ width: 200 }}>
+            <InputLabel id="simple-select-label">グループ名</InputLabel>
 
-        <FormControl sx={{ width: 100 }}>
-          <InputLabel id="simple-select-label">グループ名</InputLabel>
-
-          {haveTabGroup ? (
             <Select
               labelId="simple-select-label"
               defaultValue={tabGroup[0].tabGroupName}
               label="グループ名"
-              onChange={(e) =>
-                setSelectedTabGroupNumber(Number(e.target.value))
-              }
+              onChange={(e) => setSelectedTabGroup(e.target.value)}
             >
               {tabGroup.map((tab: TabGroup) => {
-                let tabId = tab.id;
                 let tabName = tab.tabGroupName;
                 return (
-                  <MenuItem value={tabId} key={tabId}>
+                  <MenuItem value={tabName} key={tabName}>
                     {tabName}
                   </MenuItem>
                 );
               })}
             </Select>
-          ) : (
-            <div></div>
-          )}
-        </FormControl>
+          </FormControl>
+        ) : (
+          <div>グループが作成されていません</div>
+        )}
 
         <Button
           data-testid="createTabGroupButton"
