@@ -58,7 +58,7 @@ exports[`option_pageの試験 コンポーネントテスト スナップショ�
       </div>
     </div>
     <div
-      className="MuiFormControl-root css-1myzbib-MuiFormControl-root"
+      className="MuiFormControl-root css-1orw215-MuiFormControl-root"
     >
       <label
         className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-1kty9di-MuiFormLabel-root-MuiInputLabel-root"
@@ -210,17 +210,8 @@ exports[`option_pageの試験 コンポーネントテスト スナップショ�
         </fieldset>
       </div>
     </div>
-    <div
-      className="MuiFormControl-root css-1myzbib-MuiFormControl-root"
-    >
-      <label
-        className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
-        data-shrink={false}
-        id="simple-select-label"
-      >
-        グループ名
-      </label>
-      <div />
+    <div>
+      グループが作成されていません
     </div>
     <button
       className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1rwt2y5-MuiButtonBase-root-MuiButton-root"

@@ -54,14 +54,14 @@ const CreateTabGroupComponent = (props: any) => {
           onChange={(e) => setInputGroupName(e.target.value)}
         />
 
-        <FormControl sx={{ width: 100 }}>
+        <FormControl sx={{ width: 200 }}>
           <InputLabel id="simple-select-label">Color</InputLabel>
           <Select
             value={selectedColor}
             label="Color"
             onChange={(e) => setSelectedColor(e.target.value)}
           >
-            {color.map((color: Color, index: number) => {
+            {color.map((color: Color) => {
               return (
                 <MenuItem key={color} value={color}>
                   {color}
