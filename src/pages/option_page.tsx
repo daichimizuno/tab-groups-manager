@@ -1,17 +1,25 @@
+import Box from "@mui/system/Box";
 import React, { useEffect, useState } from "react";
 import ChromeStorageAccess, {
   Color,
   TabGroup,
 } from "../dao/chrome_storage_access";
+import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
+import CreateResultAlert from "./components/create_result_alert";
 import CreateTabGroupComponent from "./components/create_tab_group";
 import CreateTabUrlComponent from "./components/create_tab_url";
 import TabGroupComponent from "./components/tab_group";
-import Box from "@mui/system/Box";
-import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
+
+export const chromeStorageStatus = ["Success", "Failed", "Nothing"] as const;
+type ChromeStorageStatus =
+  typeof chromeStorageStatus[keyof typeof chromeStorageStatus];
 
 const Options: React.FC = () => {
   const chromeStorage = new ChromeStorageAccess();
   const chromeTabAccess = new ChromeTabAccess();
+
+  const [successAddNewTabGroup, setSuccessAddNewTabGroup] =
+    useState<ChromeStorageStatus>("Nothing");
 
   // DB上のタブグループを保存するための変数
   const [tabGroup, setTabGroup] = useState<TabGroup[]>();
@@ -28,13 +36,19 @@ const Options: React.FC = () => {
   };
 
   const createTabGroup = async (groupName: string, groupColor: Color) => {
-    await chromeStorage.addNewTabGroup(groupName, groupColor);
+    const success = await chromeStorage.addNewTabGroup(groupName, groupColor);
+    if (success) {
+      setSuccessAddNewTabGroup("Success");
+    } else {
+      setSuccessAddNewTabGroup("Failed");
+    }
     syncTabGroup();
   };
 
   const createUrl = async (url: string, groupNumber: number) => {
     await chromeStorage.addUrlToTabGroup(url, groupNumber);
     syncTabGroup();
+    deleteAnotherAlert();
   };
 
   const getTabGroupData = async () => {
@@ -52,6 +66,11 @@ const Options: React.FC = () => {
     }
   };
 
+  // 他のアラートは全て非表示にする
+  const deleteAnotherAlert = () => {
+    setSuccessAddNewTabGroup("Nothing");
+  };
+
   return (
     <>
       <Box m={2} pt={3}>
@@ -60,6 +79,20 @@ const Options: React.FC = () => {
             createTabGroup(groupName, groupColor)
           }
         />
+
+        {successAddNewTabGroup === "Success" ? (
+          <CreateResultAlert
+            success={true}
+            description="タブグループを作成しました！"
+          ></CreateResultAlert>
+        ) : successAddNewTabGroup === "Failed" ? (
+          <CreateResultAlert
+            success={false}
+            description="タブグループの作成に失敗しました（既に同じ名前のタブグループが作成されています)"
+          ></CreateResultAlert>
+        ) : (
+          <></>
+        )}
 
         <CreateTabUrlComponent
           haveTabGroup={haveTabGroup()}

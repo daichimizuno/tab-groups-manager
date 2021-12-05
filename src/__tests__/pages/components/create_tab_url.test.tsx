@@ -1,5 +1,3 @@
-import React from "react";
-import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
 import {
   fireEvent,
   render,
@@ -7,6 +5,8 @@ import {
   screen,
   within,
 } from "@testing-library/react";
+import React from "react";
+import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
 import CreateTabUrlComponent from "../../../pages/components/create_tab_url";
 
 const createUrl = jest.fn();

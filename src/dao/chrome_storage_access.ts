@@ -1,6 +1,5 @@
-import { StorageKeys } from "./storage_keys";
 import { assertIsDefined, AssertIsDefinedError } from "../utils/validations";
-import { tab } from "@testing-library/user-event/dist/tab";
+import { StorageKeys } from "./storage_keys";
 
 export interface TabGroup {
   id: number;
@@ -22,21 +21,35 @@ const Color = {
 export type Color = typeof Color[keyof typeof Color];
 
 export default class ChromeStorageAccess {
-  addNewTabGroup = async (tabName: string, tabColor: Color) => {
-    const tabGroupLastIndex =
-      ((await this.syncUpdateLastIndex()) as number) || 1;
+  addNewTabGroup = async (
+    tabName: string,
+    tabColor: Color
+  ): Promise<Boolean> => {
     const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
 
-    const newTabGroup = {
-      id: tabGroupLastIndex,
-      tabGroupName: tabName,
-      tabColor: tabColor,
-      urls: [],
-    } as TabGroup;
+    // 既に他に同じ名前のタブグループ名がある場合は追加しない
+    const hasTheSameGroupNameData =
+      tabGroupData.findIndex(
+        (tabGroup) => tabGroup.tabGroupName === tabName
+      ) !== -1;
+    if (hasTheSameGroupNameData) {
+      return Promise.resolve(false);
+    } else {
+      const tabGroupLastIndex =
+        ((await this.syncUpdateLastIndex()) as number) || 1;
+      const newTabGroup = {
+        id: tabGroupLastIndex,
+        tabGroupName: tabName,
+        tabColor: tabColor,
+        urls: [],
+      } as TabGroup;
 
-    tabGroupData.push(newTabGroup);
+      tabGroupData.push(newTabGroup);
 
-    await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
+      await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
+
+      return Promise.resolve(true);
+    }
   };
 
   addUrlToTabGroup = async (url: string, tabId: number) => {

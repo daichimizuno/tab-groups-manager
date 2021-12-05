@@ -1,5 +1,5 @@
-import ChromeStorageAccess, { TabGroup } from "../../dao/chrome_storage_access";
 import { chrome } from "jest-chrome";
+import ChromeStorageAccess from "../../dao/chrome_storage_access";
 import { AssertIsDefinedError } from "../../utils/validations";
 
 let store = {} as any;
@@ -44,7 +44,7 @@ beforeEach(() => {
 describe("ChromeStorageAccessのテスト", () => {
   describe("正常系", () => {
     describe("addNewGroup", () => {
-      test("addNewTabGroup関数を呼ぶと、既にstorageに何もない場合、新しくデータが作成されること", async () => {
+      test("addNewTabGroup関数を呼ぶと、storageに何もない場合、新しくデータが作成されること", async () => {
         await storage.addNewTabGroup("test", "red");
 
         const expcetStorageData = {
@@ -120,6 +120,30 @@ describe("ChromeStorageAccessのテスト", () => {
           ],
           tabGroupLastIndex: "1",
         });
+      });
+    });
+  });
+
+  describe("準正常系", () => {
+    describe("addNewTabGroup", () => {
+      test("addNewTabGroup関数を呼ぶと、既に同じ名前のTabGroupがあると、新しいデータは作成されないこと", async () => {
+        await storage.addNewTabGroup("test", "red");
+
+        expect(store).toEqual({
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+          ],
+          tabGroupLastIndex: "1",
+        });
+        await storage.addNewTabGroup("test", "grey");
+
+        const expcetStorageData = {
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+          ],
+          tabGroupLastIndex: "1",
+        };
+        expect(store).toEqual(expcetStorageData);
       });
     });
   });
