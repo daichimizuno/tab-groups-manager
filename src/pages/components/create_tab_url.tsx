@@ -1,3 +1,4 @@
+import AddIcon from "@mui/icons-material/Add";
 import {
   Button,
   FormControl,
@@ -8,10 +9,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TabGroup } from "../../dao/chrome_storage_access";
-import AddIcon from "@mui/icons-material/Add";
-import { tab } from "@testing-library/user-event/dist/tab";
 
 const CreateTabUrlComponent = (props: any) => {
   const tabGroup = props.tabGroup as TabGroup[];

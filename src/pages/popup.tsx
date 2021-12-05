@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
 import ReactDOM from "react-dom";
 import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
+import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
 import PopupTabView from "./components/popup_tabview";
-import styled from "styled-components";
 
 const Popup = () => {
   const chromeStorage = new ChromeStorageAccess();

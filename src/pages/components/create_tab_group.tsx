@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import ChromeStorageAccess, { Color } from "../../dao/chrome_storage_access";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Button,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import React, { useState } from "react";
+import ChromeStorageAccess, { Color } from "../../dao/chrome_storage_access";
 
 export const color = [
   "grey",
