@@ -81,6 +81,17 @@ export default class ChromeStorageAccess {
     }
   };
 
+  deleteTabGroup = async (tabName: string) => {
+    const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
+    const targetTabGroupIndex = tabGroupData.findIndex(
+      (tabGroup) => tabGroup.tabGroupName === tabName
+    );
+
+    tabGroupData.splice(targetTabGroupIndex, 1);
+
+    await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
+  };
+
   syncUpdateLastIndex = async (): Promise<number> => {
     let index = await this.getTabGroupLastIndex();
     if (isNaN(index)) {
