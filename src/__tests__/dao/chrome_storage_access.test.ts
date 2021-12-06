@@ -122,6 +122,36 @@ describe("ChromeStorageAccessのテスト", () => {
         });
       });
     });
+
+    describe("deleteTabGroop", () => {
+      test("既存のタブグループが2つ入っている状態で１つ削除ができる", async () => {
+        await storage.addNewTabGroup("test", "red");
+        await storage.addNewTabGroup("test2", "blue");
+
+        expect(store).toEqual({
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+            { id: 2, tabColor: "blue", tabGroupName: "test2", urls: [] },
+          ],
+          tabGroupLastIndex: "2",
+        });
+
+        await storage.deleteTabGroup("test");
+        expect(store).toEqual({
+          tabGroup: [
+            { id: 2, tabColor: "blue", tabGroupName: "test2", urls: [] },
+          ],
+          tabGroupLastIndex: "2",
+        });
+      });
+
+      test("既存のタブグループがない状態で削除が走っても何も起こらない", async () => {
+        await storage.deleteTabGroup("test");
+        expect(store).toEqual({
+          tabGroup: [],
+        });
+      });
+    });
   });
 
   describe("準正常系", () => {
