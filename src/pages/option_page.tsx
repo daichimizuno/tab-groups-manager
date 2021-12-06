@@ -5,7 +5,7 @@ import ChromeStorageAccess, {
   TabGroup,
 } from "../dao/chrome_storage_access";
 import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
-import CreateResultAlert from "./components/create_result_alert";
+import CreateResultAlert from "./components/alerts/create_result_alert";
 import CreateTabGroupComponent from "./components/create_tab_group";
 import CreateTabUrlComponent from "./components/create_tab_url";
 import TabGroupComponent from "./components/tab_group";
@@ -15,7 +15,7 @@ type ChromeStorageStatus =
   typeof chromeStorageStatus[keyof typeof chromeStorageStatus];
 
 const Options: React.FC = () => {
-  const chromeStorage = new ChromeStorageAccess();
+  const chromeStorageAccess = new ChromeStorageAccess();
   const chromeTabAccess = new ChromeTabAccess();
 
   const [successAddNewTabGroup, setSuccessAddNewTabGroup] =
@@ -36,7 +36,10 @@ const Options: React.FC = () => {
   };
 
   const createTabGroup = async (groupName: string, groupColor: Color) => {
-    const success = await chromeStorage.addNewTabGroup(groupName, groupColor);
+    const success = await chromeStorageAccess.addNewTabGroup(
+      groupName,
+      groupColor
+    );
     if (success) {
       setSuccessAddNewTabGroup("Success");
     } else {
@@ -46,13 +49,13 @@ const Options: React.FC = () => {
   };
 
   const createUrl = async (url: string, groupNumber: number) => {
-    await chromeStorage.addUrlToTabGroup(url, groupNumber);
+    await chromeStorageAccess.addUrlToTabGroup(url, groupNumber);
     syncTabGroup();
     deleteAnotherAlert();
   };
 
   const getTabGroupData = async () => {
-    let returnTabGroup = await chromeStorage.getAllTabGroup();
+    let returnTabGroup = await chromeStorageAccess.getAllTabGroup();
     if (JSON.stringify(tabGroup) !== JSON.stringify(returnTabGroup)) {
       setTabGroup(returnTabGroup);
     }
@@ -71,6 +74,11 @@ const Options: React.FC = () => {
     setSuccessAddNewTabGroup("Nothing");
   };
 
+  const deleteTabGroup = async (tabNames: string[]) => {
+    await chromeStorageAccess.deleteTabGroup(tabNames);
+    syncTabGroup();
+  };
+
   return (
     <>
       <Box m={2} pt={3}>
@@ -80,7 +88,8 @@ const Options: React.FC = () => {
           }
         />
 
-        {successAddNewTabGroup === "Success" ? (
+        {/* 成功か失敗のアラートは画面が崩れるので後で対応 */}
+        {/* {successAddNewTabGroup === "Success" ? (
           <CreateResultAlert
             success={true}
             description="タブグループを作成しました！"
@@ -92,7 +101,7 @@ const Options: React.FC = () => {
           ></CreateResultAlert>
         ) : (
           <></>
-        )}
+        )} */}
 
         <CreateTabUrlComponent
           haveTabGroup={haveTabGroup()}
@@ -103,7 +112,10 @@ const Options: React.FC = () => {
         />
 
         {haveTabGroup() ? (
-          <TabGroupComponent tabGroup={tabGroup}> /</TabGroupComponent>
+          <TabGroupComponent
+            tabGroup={tabGroup}
+            deleteTabGroup={(tabNames: string[]) => deleteTabGroup(tabNames)}
+          />
         ) : (
           <div></div>
         )}

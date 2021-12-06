@@ -136,7 +136,7 @@ describe("ChromeStorageAccessのテスト", () => {
           tabGroupLastIndex: "2",
         });
 
-        await storage.deleteTabGroup("test");
+        await storage.deleteTabGroup(["test"]);
         expect(store).toEqual({
           tabGroup: [
             { id: 2, tabColor: "blue", tabGroupName: "test2", urls: [] },
@@ -146,9 +146,23 @@ describe("ChromeStorageAccessのテスト", () => {
       });
 
       test("既存のタブグループがない状態で削除が走っても何も起こらない", async () => {
-        await storage.deleteTabGroup("test");
+        await storage.deleteTabGroup(["test"]);
         expect(store).toEqual({
           tabGroup: [],
+        });
+      });
+
+      test("既存のタブグループ3つある状態で２つ削除ができる", async () => {
+        await storage.addNewTabGroup("test", "red");
+        await storage.addNewTabGroup("test2", "blue");
+        await storage.addNewTabGroup("test3", "grey");
+
+        await storage.deleteTabGroup(["test", "test3"]);
+        expect(store).toEqual({
+          tabGroup: [
+            { id: 2, tabColor: "blue", tabGroupName: "test2", urls: [] },
+          ],
+          tabGroupLastIndex: "3",
         });
       });
     });
@@ -174,6 +188,24 @@ describe("ChromeStorageAccessのテスト", () => {
           tabGroupLastIndex: "1",
         };
         expect(store).toEqual(expcetStorageData);
+      });
+
+      test("既存のタブグループ4つある状態で存在しないタブ名が来ても削除されない", async () => {
+        await storage.addNewTabGroup("test", "red");
+        await storage.addNewTabGroup("test2", "blue");
+        await storage.addNewTabGroup("test3", "grey");
+        await storage.addNewTabGroup("test4", "cyan");
+
+        await storage.deleteTabGroup(["test5", "test6"]);
+        expect(store).toEqual({
+          tabGroup: [
+            { id: 1, tabColor: "red", tabGroupName: "test", urls: [] },
+            { id: 2, tabColor: "blue", tabGroupName: "test2", urls: [] },
+            { id: 3, tabColor: "grey", tabGroupName: "test3", urls: [] },
+            { id: 4, tabColor: "cyan", tabGroupName: "test4", urls: [] },
+          ],
+          tabGroupLastIndex: "4",
+        });
       });
     });
   });
