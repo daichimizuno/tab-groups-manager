@@ -92,9 +92,7 @@ exports[`PopupTabViewの試験 コンポーネントテスト 正常系 スナ�
     hidden={false}
     id={null}
     role="tabpanel"
-  >
-    Item One
-  </div>
+  />
   <div
     aria-labelledby={null}
     className="MuiTabPanel-root css-13xfq8m-MuiTabPanel-root"
