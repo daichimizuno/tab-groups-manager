@@ -81,13 +81,18 @@ export default class ChromeStorageAccess {
     }
   };
 
-  deleteTabGroup = async (tabName: string) => {
+  deleteTabGroup = async (tabNames: string[]) => {
     const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
-    const targetTabGroupIndex = tabGroupData.findIndex(
-      (tabGroup) => tabGroup.tabGroupName === tabName
-    );
 
-    tabGroupData.splice(targetTabGroupIndex, 1);
+    tabNames.forEach((tabName) => {
+      const targetTabGroupIndex = tabGroupData.findIndex(
+        (tabGroup) => tabGroup.tabGroupName === tabName
+      );
+
+      if (targetTabGroupIndex !== -1) {
+        tabGroupData.splice(targetTabGroupIndex, 1);
+      }
+    });
 
     await chrome.storage.sync.set({ tabGroup: tabGroupData }, async () => {});
   };

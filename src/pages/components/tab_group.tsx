@@ -11,6 +11,7 @@ import TabGroupTable from "./tab_group_table";
 
 const TabGroupComponent = (props: any) => {
   const tabGroup = props.tabGroup as TabGroup[];
+  const deleteTabGroup = props.deleteTabGroup;
 
   return (
     <>
@@ -18,18 +19,10 @@ const TabGroupComponent = (props: any) => {
         登録されたタブグループ
       </Typography>
 
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMore />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>リスト1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <TabGroupTable tabGroup={tabGroup} />
-        </AccordionDetails>
-      </Accordion>
+      <TabGroupTable
+        tabGroup={tabGroup}
+        deleteTabGroup={(tabNames: string[]) => deleteTabGroup(tabNames)}
+      />
     </>
   );
 };
