@@ -4,7 +4,8 @@ import ChromeStorageAccess, {
   Color,
   TabGroup,
 } from "../dao/chrome_storage_access";
-import ChromeTabAccess from "../utils/chrome_tab_utils/chrome_tab";
+import { getAllInWindow } from "../utils/chrome_tab_utils/chrome_tab_background_worker";
+import ChromeTabSendMessage from "../utils/chrome_tab_utils/chrome_tab_send_message";
 import CreateResultAlert from "./components/alerts/create_result_alert";
 import CreateTabGroupComponent from "./components/create_tab_group";
 import CreateTabUrlComponent from "./components/create_tab_url";
@@ -16,7 +17,7 @@ type ChromeStorageStatus =
 
 const Options: React.FC = () => {
   const chromeStorageAccess = new ChromeStorageAccess();
-  const chromeTabAccess = new ChromeTabAccess();
+  const chromeTabAccess = new ChromeTabSendMessage();
 
   const [successAddNewTabGroup, setSuccessAddNewTabGroup] =
     useState<ChromeStorageStatus>("Nothing");
@@ -26,6 +27,7 @@ const Options: React.FC = () => {
 
   // DB上のTabGroupデータにView側のリストを依存させる
   useEffect(() => {
+    getAllInWindow();
     getTabGroupData();
   }, [tabGroup]);
 

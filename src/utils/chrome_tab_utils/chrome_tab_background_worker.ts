@@ -1,14 +1,14 @@
 import { Color, TabGroup } from "../../dao/chrome_storage_access";
 
-chrome.runtime.onMessage.addListener((tabGroup: TabGroup[]) => {
-  console.log(`message request: ${JSON.stringify(tabGroup)}`);
-  tabGroup.forEach((tab) => {
-    openTab(tab.tabColor, tab.tabGroupName, tab.urls);
+export const getAllInWindow = async (): Promise<chrome.tabs.Tab[]> => {
+  const tabs = await chrome.tabs.query({ currentWindow: true });
+  tabs.forEach((tab) => {
+    console.log(`tab : ${tab.title}`);
   });
-  return Promise.resolve();
-});
+  return tabs;
+};
 
-const openTab = (color: Color, title: string, urls: string[]) => {
+export const openTab = (color: Color, title: string, urls: string[]) => {
   // groupIdを取得するために、１つ目のurlだけopenさせる
   chrome.tabs.create({ url: urls[0] }, (tab) => {
     chrome.tabs.group({ tabIds: tab.id }, (gid: number) => {
@@ -33,3 +33,11 @@ const openTab = (color: Color, title: string, urls: string[]) => {
     });
   });
 };
+
+chrome.runtime.onMessage.addListener((tabGroup: TabGroup[]) => {
+  console.log(`message request: ${JSON.stringify(tabGroup)}`);
+  tabGroup.forEach((tab) => {
+    openTab(tab.tabColor, tab.tabGroupName, tab.urls);
+  });
+  return Promise.resolve();
+});

@@ -7,12 +7,28 @@ import {
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
 import PopupTabView from "../../../pages/components/popup_tabview";
+import * as ChromeTabBackgroundWorker from "../../../utils/chrome_tab_utils/chrome_tab_background_worker";
 
-const createTabGroup = jest.fn();
+const tabs: chrome.tabs.Tab[] = [
+  {
+    index: 1,
+    title: "test",
+    url: "https://google.com",
+  } as chrome.tabs.Tab,
+  {
+    index: 2,
+    title: "test2",
+    url: "https://google.com",
+  } as chrome.tabs.Tab,
+];
+
 let component: RenderResult;
 
 beforeEach(() => {
   jest.resetAllMocks();
+  const getAllWindowSpy = jest
+    .spyOn(ChromeTabBackgroundWorker, "getAllInWindow")
+    .mockResolvedValue(tabs);
 
   act(() => {
     component = render(<PopupTabView />);
@@ -41,9 +57,10 @@ describe("PopupTabViewの試験", () => {
         expect(setTab.textContent).toBe("保存されている設定");
       });
 
-      test("初回は「開かれているタブ」が選択されていて、「Item One」と表示されていること", () => {
+      test("初回は「開かれているタブ」が選択されていて、「test」と「test2」というタブが表示されていること", () => {
         const tabPanel = screen.getByRole("tabpanel");
-        expect(tabPanel.textContent).toBe("Item One");
+        expect(screen.getByText("test")).toBeVisible();
+        expect(screen.getByText("test2")).toBeVisible();
       });
 
       test("「保存されている設定」を押すと「setting page」というページが開かれること", () => {

@@ -7,8 +7,7 @@
     "watch": "webpack --config webpack/webpack.dev.js --watch",
     "build": "webpack --config webpack/webpack.prod.js",
     "clean": "rimraf dist",
-    "test": "jest",
-    "testu": "jest --updateSnapshot",
+    "test": "jest --updateSnapshot",
     "style": "prettier --write \"src/**/*.{ts,tsx}\"",
     "precommit": "lint-staged"
   },
@@ -43,7 +42,6 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.2.1",
-    "@types/chrome": "0.0.162",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.3.3"
@@ -52,6 +50,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "@types/chrome": "^0.0.171",
     "@types/enzyme": "^3.10.10",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.0.2",
