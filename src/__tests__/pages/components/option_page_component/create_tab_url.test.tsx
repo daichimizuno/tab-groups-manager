@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import CreateTabUrlComponent from "../../../pages/components/create_tab_url";
+import CreateTabUrlComponent from "../../../../pages/components/option_page_component/create_tab_url";
 
 const createUrl = jest.fn();
 const tabGroup = [

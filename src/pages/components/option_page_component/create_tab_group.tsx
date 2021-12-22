@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import ChromeStorageAccess, { Color } from "../../dao/chrome_storage_access";
+import ChromeStorageAccess, { Color } from "../../../dao/chrome_storage_access";
 
 export const color = [
   "grey",

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import { TabGroup } from "../../../dao/chrome_storage_access";
-import TabGroupComponent from "../../../pages/components/tab_group";
+import { TabGroup } from "../../../../dao/chrome_storage_access";
+import TabGroupComponent from "../../../../pages/components/option_page_component/tab_group";
 
 const tabGroupMock = [
   {

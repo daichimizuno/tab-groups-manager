@@ -6,8 +6,8 @@ import {
 } from "@testing-library/react";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import PopupTabView from "../../../pages/components/popup_tabview";
-import * as ChromeTabBackgroundWorker from "../../../utils/chrome_tab_utils/chrome_tab_background_worker";
+import PopupTabView from "../../../../pages/components/popup_component/popup_tabview";
+import * as ChromeTabBackgroundWorker from "../../../../utils/chrome_tab_utils/chrome_tab_background_worker";
 
 const tabs: chrome.tabs.Tab[] = [
   {

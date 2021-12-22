@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { TabGroup } from "../../dao/chrome_storage_access";
+import { TabGroup } from "../../../dao/chrome_storage_access";
 
 const CreateTabUrlComponent = (props: any) => {
   const tabGroup = props.tabGroup as TabGroup[];

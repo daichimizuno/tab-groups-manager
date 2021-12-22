@@ -6,7 +6,7 @@ import {
 } from "@testing-library/react";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import OpenedTabView from "../../../pages/components/opened_tabs_view";
+import OpenedTabView from "../../../../pages/components/popup_component/opened_tabs_view";
 
 const tabs: chrome.tabs.Tab[] = [
   {

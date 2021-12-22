@@ -7,8 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { TabGroup } from "../../dao/chrome_storage_access";
-import DeleteAlert from "./alerts/delete_alert";
+import { TabGroup } from "../../../dao/chrome_storage_access";
+import DeleteAlert from "../alerts/delete_alert";
 
 const TabGroupTable = (props: any) => {
   const [selected, setSelected] = useState<string[]>([]);

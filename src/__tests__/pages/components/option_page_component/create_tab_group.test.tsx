@@ -9,7 +9,7 @@ import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
 import CreateTabGroupComponent, {
   color,
-} from "../../../pages/components/create_tab_group";
+} from "../../../../pages/components/option_page_component/create_tab_group";
 
 const createTabGroup = jest.fn();
 let component: RenderResult;
