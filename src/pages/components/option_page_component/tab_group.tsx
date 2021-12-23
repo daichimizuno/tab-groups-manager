@@ -1,10 +1,4 @@
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
 import { TabGroup } from "../../../dao/chrome_storage_access";
 import TabGroupTable from "./tab_group_table";

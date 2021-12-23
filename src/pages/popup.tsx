@@ -10,29 +10,25 @@ const Popup = () => {
   const chromeTabAccess = new ChromeTabSendMessage();
 
   // DB上のタブグループを保存するための変数
-  const [tabGroup, setTabGroup] = useState<TabGroup[]>();
+  const [tabGroups, setTabGroups] = useState<TabGroup[]>([]);
 
   useEffect(() => {
     getTabGroupData();
-  }, [tabGroup]);
+  }, []);
 
   const getTabGroupData = async () => {
     let returnTabGroup = await chromeStorage.getAllTabGroup();
-    if (JSON.stringify(tabGroup) !== JSON.stringify(returnTabGroup)) {
-      setTabGroup(returnTabGroup);
-    }
+    setTabGroups(returnTabGroup);
   };
 
   const openTabs = () => {
-    if (tabGroup !== undefined && tabGroup.length > 0) {
-      chromeTabAccess.createTabGroup(tabGroup);
-    }
+    chrome.runtime.sendMessage(tabGroups);
+    // chromeTabAccess.createTabGroupsSendMessage(tabGroups);
   };
 
   return (
     <>
-      <button onClick={openTabs}>open TabGroup</button>
-      <PopupTabView />
+      <PopupTabView tabGroups={tabGroups} />
     </>
   );
 };
