@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { TabGroup } from "../../dao/chrome_storage_access";
+import { TabGroup } from "../../../dao/chrome_storage_access";
 import TabGroupTable from "./tab_group_table";
 
 const TabGroupComponent = (props: any) => {

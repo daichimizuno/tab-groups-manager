@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopupTabViewの試験 コンポーネントテスト 正常系 スナップショットが前回の結果と一致しているかどうか 1`] = `
+Array [
+  <ul
+    className="MuiList-root MuiList-padding css-168pop2-MuiList-root"
+  >
+    <div>
+      <li
+        className="MuiListItem-root MuiListItem-padding css-184w5ny-MuiListItem-root"
+        disabled={false}
+      >
+        <div
+          className="MuiListItemText-root css-tlelie-MuiListItemText-root"
+          data-testid="test"
+        >
+          <span
+            className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          >
+            test
+          </span>
+        </div>
+        <div
+          className="MuiListItemSecondaryAction-root MuiListItemSecondaryAction-disableGutters css-14f9zar-MuiListItemSecondaryAction-root"
+        >
+          <button
+            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="AddCircleIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </li>
+      <hr
+        className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+    </div>
+    <div>
+      <li
+        className="MuiListItem-root MuiListItem-padding css-184w5ny-MuiListItem-root"
+        disabled={false}
+      >
+        <div
+          className="MuiListItemText-root css-tlelie-MuiListItemText-root"
+          data-testid="test2"
+        >
+          <span
+            className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          >
+            test2
+          </span>
+        </div>
+        <div
+          className="MuiListItemSecondaryAction-root MuiListItemSecondaryAction-disableGutters css-14f9zar-MuiListItemSecondaryAction-root"
+        >
+          <button
+            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="AddCircleIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </li>
+      <hr
+        className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+    </div>
+  </ul>,
+  <div />,
+]
+`;

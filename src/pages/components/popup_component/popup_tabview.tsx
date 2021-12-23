@@ -5,7 +5,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import OpenedTabView from "./opened_tabs_view";
-import { getAllInWindow } from "../../utils/chrome_tab_utils/chrome_tab_background_worker";
+import { getAllInWindow } from "../../../utils/chrome_tab_utils/chrome_tab_background_worker";
 
 const PopupTabView = () => {
   const [tabContextValue, setTabContextValue] = useState("1");
@@ -24,15 +24,9 @@ const PopupTabView = () => {
     setTabContextValue(newValue);
   };
 
-  const openOptionPage = () => {
-    chrome.runtime.openOptionsPage(() => {
-      console.log("option page is created");
-    });
-  };
-
   return (
     <>
-      <Box sx={{ width: "400px", typography: "body1" }}>
+      <Box sx={{ width: "600px", minHeight: "300px", typography: "body1" }}>
         <TabContext value={tabContextValue}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
@@ -55,7 +49,9 @@ const PopupTabView = () => {
             )}
           </TabPanel>
           <TabPanel value="2">
-            <button onClick={openOptionPage}>setting page</button>
+            <button onClick={() => chrome.runtime.openOptionsPage()}>
+              setting page
+            </button>
           </TabPanel>
         </TabContext>
       </Box>

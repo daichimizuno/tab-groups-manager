@@ -1,7 +1,7 @@
 import { render, RenderResult } from "@testing-library/react";
 import React from "react";
 import renderer, { ReactTestRendererJSON } from "react-test-renderer";
-import CreateResultAlert from "../../../pages/components/alerts/create_result_alert";
+import CreateResultAlert from "../../../../pages/components/alerts/create_result_alert";
 
 let component: RenderResult;
 

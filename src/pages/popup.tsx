@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import ChromeStorageAccess, { TabGroup } from "../dao/chrome_storage_access";
 import { getAllInWindow } from "../utils/chrome_tab_utils/chrome_tab_background_worker";
 import ChromeTabSendMessage from "../utils/chrome_tab_utils/chrome_tab_send_message";
-import PopupTabView from "./components/popup_tabview";
+import PopupTabView from "./components/popup_component/popup_tabview";
 
 const Popup = () => {
   const chromeStorage = new ChromeStorageAccess();
