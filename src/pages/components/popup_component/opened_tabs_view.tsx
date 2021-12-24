@@ -6,6 +6,7 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import { purple } from "@mui/material/colors";
 import React, { useEffect, useState } from "react";
 import ChromeStorageAccess, {
   TabGroup,
@@ -73,7 +74,7 @@ const OpenedTabView = (props: any) => {
                 data-testid={openedTab.title}
               />
             </ListItem>
-            <Divider />
+            <Divider style={{ background: "purple" }} />
           </div>
         ))}
       </List>

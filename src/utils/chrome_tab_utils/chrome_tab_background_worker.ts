@@ -8,7 +8,7 @@ export const getAllInWindow = async (): Promise<chrome.tabs.Tab[]> => {
   return tabs;
 };
 
-export const openTab = (color: Color, title: string, urls: string[]) => {
+const openTab = (color: Color, title: string, urls: string[]) => {
   // groupIdを取得するために、１つ目のurlだけopenさせる
   chrome.tabs.create({ url: urls[0] }, (tab) => {
     chrome.tabs.group({ tabIds: tab.id }, (gid: number) => {

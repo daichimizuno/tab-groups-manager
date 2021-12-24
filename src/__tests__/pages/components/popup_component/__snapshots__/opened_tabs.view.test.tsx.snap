@@ -58,6 +58,11 @@ Array [
       </li>
       <hr
         className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        style={
+          Object {
+            "background": "purple",
+          }
+        }
       />
     </div>
     <div>
@@ -113,6 +118,11 @@ Array [
       </li>
       <hr
         className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        style={
+          Object {
+            "background": "purple",
+          }
+        }
       />
     </div>
   </ul>,

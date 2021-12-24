@@ -31,7 +31,7 @@ beforeEach(() => {
     .mockResolvedValue(tabs);
 
   act(() => {
-    component = render(<PopupTabView />);
+    component = render(<PopupTabView tabGroups={undefined} />);
   });
 });
 
@@ -44,7 +44,7 @@ describe("PopupTabViewの試験", () => {
     describe("正常系", () => {
       test("スナップショットが前回の結果と一致しているかどうか", () => {
         let tree = renderer
-          .create(<PopupTabView />)
+          .create(<PopupTabView tabGroups={undefined} />)
           .toJSON() as ReactTestRendererJSON;
         expect(tree).toMatchSnapshot();
       });
@@ -63,14 +63,16 @@ describe("PopupTabViewの試験", () => {
         expect(screen.getByText("test2")).toBeVisible();
       });
 
-      test("「保存されている設定」を押すと「setting page」というページが開かれること", () => {
+      test("「保存されている設定」を押すと「全て開くまだタブグループが作成されていません設定画面へ」というテキストがあること", () => {
         const setTab = screen.getByRole("tab", { name: "保存されている設定" });
         act(() => {
           fireEvent.click(setTab);
         });
 
         const tabPanel = screen.getByRole("tabpanel");
-        expect(tabPanel.textContent).toBe("setting page");
+        expect(tabPanel.textContent).toBe(
+          "全て開くまだタブグループが作成されていません設定画面へ"
+        );
       });
     });
   });
