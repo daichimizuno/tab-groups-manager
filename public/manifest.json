@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Auto Create Tab Group",
-  "description": "Auto Create Tab Group",
-  "version": "1.0",
+  "name": "Store/Open Tab Group",
+  "description": "タブグループを保存し、いつでも開く事ができる拡張です。",
+  "version": "1.0.0",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
@@ -11,21 +11,15 @@
     "service_worker": "js/chrome_tab_background_worker.js"
   },
   "action": {
-    "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["js/vendor.js"]
     }
   ],
-  "permissions": [
-    "storage",
-    "tabGroups",
-    "tabs"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ]
+  "permissions": ["storage", "tabGroups", "tabs"],
+  "host_permissions": ["<all_urls>"]
 }
