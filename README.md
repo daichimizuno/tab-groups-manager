@@ -1,6 +1,6 @@
 # Chrome Extension TypeScript Starter
 
-![build](https://github.com/daichimizuno/auto-create-tab-group/workflows/)
+![build](https://github.com/daichimizuno/tab-group-manager/workflows/)
 
 Chrome Extension, TypeScript and Visual Studio Code
 
