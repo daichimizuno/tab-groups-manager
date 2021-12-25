@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Store/Open Tab Group",
+  "name": "Tab Group Manager",
   "description": "タブグループを保存し、いつでも開く事ができる拡張です。",
   "version": "1.0.0",
   "options_ui": {

@@ -1,7 +1,7 @@
 {
-  "name": "auto-create-tab-group",
+  "name": "tab-group-manager",
   "version": "1.0.0",
-  "description": "auto-create-tab-group",
+  "description": "tab-group-manager",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --config webpack/webpack.dev.js --watch",
@@ -33,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/daichimizuno/auto-create-tab-group.git"
+    "url": "https://github.com/daichimizuno/tab-group-manager.git"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",
