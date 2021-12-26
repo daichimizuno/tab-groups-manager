@@ -22,9 +22,7 @@ const TabGroupTable = (props: any) => {
   const tabGroups = props.tabGroup as TabGroup[];
   const deleteTabGroup = props.deleteTabGroup;
 
-  useEffect(() => {
-    console.log(`tabGroups : ${JSON.stringify(tabGroups)}`);
-  }, [tabGroups]);
+  useEffect(() => {}, [tabGroups]);
 
   const showDialog = () => {
     setOpenDialog(true);
@@ -136,7 +134,7 @@ const TabGroupTable = (props: any) => {
                   <TableCell>
                     {tabGroup.urls.map((url) => {
                       return (
-                        <div>
+                        <div key={url}>
                           <h5>{url}</h5>
                           <Divider />
                         </div>

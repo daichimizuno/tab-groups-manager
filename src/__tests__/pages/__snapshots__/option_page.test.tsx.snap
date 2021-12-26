@@ -4,14 +4,14 @@ exports[`option_pageの試験 コンポーネントテスト スナップショ�
 <div
   className="MuiBox-root css-1c5ij41"
 >
-  <p
+  <span
     className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
     <h3>
       新しいタブグループを作成
     </h3>
-  </p>
+  </span>
   <div
     className="css-18wdohr-MuiStack-root"
   >
@@ -159,14 +159,14 @@ exports[`option_pageの試験 コンポーネントテスト スナップショ�
       作成
     </button>
   </div>
-  <p
+  <span
     className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
     <h3>
       URLをグループに追加
     </h3>
-  </p>
+  </span>
   <div
     className="css-18wdohr-MuiStack-root"
   >

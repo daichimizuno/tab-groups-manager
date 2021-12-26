@@ -23,7 +23,6 @@ const OpenedTabView = (props: any) => {
   const [tabGroup, setTabGroup] = useState<TabGroup[]>([]);
 
   const addUrlInTabGroup = async (tabId: number) => {
-    console.log(`tabId : ${tabId}`);
     await chromeStorageAccess.addUrlToTabGroup(url, tabId);
     handleModalClose();
   };
@@ -40,8 +39,6 @@ const OpenedTabView = (props: any) => {
     title: string | undefined,
     url: string | undefined
   ) => {
-    console.log(`title : ${title}`);
-    console.log(`url : ${url}`);
     if (title !== undefined && url !== undefined) {
       setTitle(title);
       setUrl(url);
@@ -55,7 +52,7 @@ const OpenedTabView = (props: any) => {
     <>
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {openedTabs.map((openedTab: chrome.tabs.Tab, index: number) => (
-          <div>
+          <div key={openedTab.id}>
             <ListItem
               key={index}
               disableGutters

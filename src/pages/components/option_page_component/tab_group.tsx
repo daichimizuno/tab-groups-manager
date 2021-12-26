@@ -9,7 +9,7 @@ const TabGroupComponent = (props: any) => {
 
   return (
     <>
-      <Typography data-testid="title">
+      <Typography component={"span"} data-testid="title">
         <h3>登録されたタブグループ</h3>
       </Typography>
 
