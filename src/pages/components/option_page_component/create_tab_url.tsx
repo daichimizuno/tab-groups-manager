@@ -21,28 +21,25 @@ const CreateTabUrlComponent = (props: any) => {
 
   const _createUrlGroupData = () => {
     if (inputUrl.length > 0) {
-      let index: number;
-      if (selectedTabGroup === "") {
-        index = _indexTabGroupNumber(tabGroup[0].tabGroupName);
-      } else {
-        index = _indexTabGroupNumber(selectedTabGroup);
+      const tabId = _indexTabGroupId(selectedTabGroup);
+      console.log(`tabId : ${tabId}`);
+      console.log(`selectedTabGroup : ${selectedTabGroup}`);
+      if (tabId !== -1) {
+        props.createUrl(inputUrl, tabId);
+        setInputUrl("");
       }
-
-      props.createUrl(inputUrl, index);
-      setInputUrl("");
     }
   };
 
-  const _indexTabGroupNumber = (name: string): number => {
-    let tabGroupNumber = -1;
-    tabGroup.map((tab, index) => {
+  const _indexTabGroupId = (name: string): number => {
+    let tabId = -1;
+    tabGroup.map((tab) => {
       if (tab.tabGroupName === name) {
-        // 配列のインデックスは0から始まるので、+1する
-        tabGroupNumber = index + 1;
+        tabId = tab.id;
       }
     });
 
-    return tabGroupNumber;
+    return tabId;
   };
 
   return (
@@ -69,6 +66,7 @@ const CreateTabUrlComponent = (props: any) => {
               defaultValue={tabGroup[0].tabGroupName}
               label="グループ名"
               onChange={(e) => setSelectedTabGroup(e.target.value)}
+              data-testid="groupSelect"
             >
               {tabGroup.map((tab: TabGroup) => {
                 let tabName = tab.tabGroupName;
