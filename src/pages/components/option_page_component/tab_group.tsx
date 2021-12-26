@@ -9,8 +9,8 @@ const TabGroupComponent = (props: any) => {
 
   return (
     <>
-      <Typography data-testid="title" mb={4} mt={4}>
-        登録されたタブグループ
+      <Typography data-testid="title">
+        <h3>登録されたタブグループ</h3>
       </Typography>
 
       <TabGroupTable

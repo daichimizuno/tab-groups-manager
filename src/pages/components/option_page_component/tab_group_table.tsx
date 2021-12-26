@@ -1,5 +1,11 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Checkbox, IconButton, Paper, TableContainer } from "@mui/material";
+import {
+  Checkbox,
+  Divider,
+  IconButton,
+  Paper,
+  TableContainer,
+} from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -81,14 +87,18 @@ const TabGroupTable = (props: any) => {
         <Table>
           <TableHead>
             <TableRow hover>
-              <TableCell></TableCell>
-              <TableCell style={{ width: 400 }} align="center">
-                タブグループ名{" "}
+              <TableCell style={{ minWidth: 100 }} align="center">
+                <h3>削除</h3>
               </TableCell>
-              <TableCell style={{ width: 150 }} align="center">
-                タブ色
+              <TableCell style={{ minWidth: 300 }} align="center">
+                <h3>タブグループ名</h3>
               </TableCell>
-              <TableCell align="center">url</TableCell>
+              <TableCell style={{ minWidth: 200 }} align="center">
+                <h3>タブ色</h3>
+              </TableCell>
+              <TableCell align="center">
+                <h3>URL</h3>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -102,7 +112,7 @@ const TabGroupTable = (props: any) => {
                   key={tabGroup.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell padding="checkbox">
+                  <TableCell padding="checkbox" align="center">
                     <Checkbox
                       color="primary"
                       checked={isItemSelected}
@@ -118,10 +128,21 @@ const TabGroupTable = (props: any) => {
                     padding="none"
                     align="center"
                   >
-                    {tabGroup.tabGroupName}
+                    <h4>{tabGroup.tabGroupName}</h4>
                   </TableCell>
-                  <TableCell align="center">{tabGroup.tabColor}</TableCell>
-                  <TableCell>{tabGroup.urls}</TableCell>
+                  <TableCell align="center">
+                    <h4>{tabGroup.tabColor}</h4>
+                  </TableCell>
+                  <TableCell>
+                    {tabGroup.urls.map((url) => {
+                      return (
+                        <div>
+                          <h5>{url}</h5>
+                          <Divider />
+                        </div>
+                      );
+                    })}
+                  </TableCell>
                 </TableRow>
               );
             })}

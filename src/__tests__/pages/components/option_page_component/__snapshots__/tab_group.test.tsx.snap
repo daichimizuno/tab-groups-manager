@@ -3,10 +3,12 @@
 exports[`tab_groupのテスト コンポーネントのてすと スナップショットが前回の結果と一致しているかどうか 1`] = `
 Array [
   <p
-    className="MuiTypography-root MuiTypography-body1 css-4oopdw-MuiTypography-root"
+    className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
-    登録されたタブグループ
+    <h3>
+      登録されたタブグループ
+    </h3>
   </p>,
   <div
     className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
@@ -31,21 +33,17 @@ Array [
         >
           <th
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
-            scope="col"
-          />
-          <th
-            aria-sort={null}
             className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1ndpvdd-MuiTableCell-root"
             scope="col"
             style={
               Object {
-                "width": 400,
+                "minWidth": 100,
               }
             }
           >
-            タブグループ名
-             
+            <h3>
+              削除
+            </h3>
           </th>
           <th
             aria-sort={null}
@@ -53,18 +51,36 @@ Array [
             scope="col"
             style={
               Object {
-                "width": 150,
+                "minWidth": 300,
               }
             }
           >
-            タブ色
+            <h3>
+              タブグループ名
+            </h3>
+          </th>
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1ndpvdd-MuiTableCell-root"
+            scope="col"
+            style={
+              Object {
+                "minWidth": 200,
+              }
+            }
+          >
+            <h3>
+              タブ色
+            </h3>
           </th>
           <th
             aria-sort={null}
             className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1ndpvdd-MuiTableCell-root"
             scope="col"
           >
-            url
+            <h3>
+              URL
+            </h3>
           </th>
         </tr>
       </thead>
@@ -79,7 +95,7 @@ Array [
         >
           <td
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium css-1nf681w-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium css-g9ktl7-MuiTableCell-root"
           >
             <span
               className="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
@@ -124,19 +140,30 @@ Array [
             id="enhanced-table-checkbox-0"
             scope="row"
           >
-            テスト
+            <h4>
+              テスト
+            </h4>
           </th>
           <td
             aria-sort={null}
             className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1yhpg23-MuiTableCell-root"
           >
-            grey
+            <h4>
+              grey
+            </h4>
           </td>
           <td
             aria-sort={null}
             className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
           >
-            https://google.com
+            <div>
+              <h5>
+                https://google.com
+              </h5>
+              <hr
+                className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+              />
+            </div>
           </td>
         </tr>
         <tr
@@ -146,7 +173,7 @@ Array [
         >
           <td
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium css-1nf681w-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium css-g9ktl7-MuiTableCell-root"
           >
             <span
               className="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
@@ -191,19 +218,30 @@ Array [
             id="enhanced-table-checkbox-1"
             scope="row"
           >
-            テスト2
+            <h4>
+              テスト2
+            </h4>
           </th>
           <td
             aria-sort={null}
             className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1yhpg23-MuiTableCell-root"
           >
-            red
+            <h4>
+              red
+            </h4>
           </td>
           <td
             aria-sort={null}
             className="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
           >
-            https://yahoo.co.jp
+            <div>
+              <h5>
+                https://yahoo.co.jp
+              </h5>
+              <hr
+                className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+              />
+            </div>
           </td>
         </tr>
       </tbody>

@@ -3,10 +3,12 @@
 exports[`CreateTabGroupComponentの試験 コンポーネントテスト 正常系 スナップショットが前回の結果と一致しているかどうか 1`] = `
 Array [
   <p
-    className="MuiTypography-root MuiTypography-body1 css-4oopdw-MuiTypography-root"
+    className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
-    URLをグループに追加
+    <h3>
+      URLをグループに追加
+    </h3>
   </p>,
   <div
     className="css-18wdohr-MuiStack-root"
@@ -55,7 +57,13 @@ Array [
         </fieldset>
       </div>
     </div>
-    <div>
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
       グループが作成されていません
     </div>
     <button

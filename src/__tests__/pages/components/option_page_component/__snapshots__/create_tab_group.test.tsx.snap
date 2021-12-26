@@ -3,10 +3,12 @@
 exports[`CreateTabGroupComponentの試験 コンポーネントテスト 正常系 スナップショットが前回の結果と一致しているかどうか 1`] = `
 Array [
   <p
-    className="MuiTypography-root MuiTypography-body1 css-1yryl06-MuiTypography-root"
+    className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
-    新しいタブグループを作成
+    <h3>
+      新しいタブグループを作成
+    </h3>
   </p>,
   <div
     className="css-18wdohr-MuiStack-root"

@@ -17,7 +17,9 @@ const CreateTabUrlComponent = (props: any) => {
   const haveTabGroup = props.haveTabGroup as boolean;
 
   const [inputUrl, setInputUrl] = useState<string>("");
-  const [selectedTabGroup, setSelectedTabGroup] = useState<string>("");
+  const [selectedTabGroup, setSelectedTabGroup] = useState<string>(
+    haveTabGroup ? tabGroup[0].tabGroupName : ""
+  );
 
   const _createUrlGroupData = () => {
     if (inputUrl.length > 0) {
@@ -44,8 +46,8 @@ const CreateTabUrlComponent = (props: any) => {
 
   return (
     <>
-      <Typography data-testid="title" mb={4} mt={4}>
-        URLをグループに追加
+      <Typography data-testid="title">
+        <h3>URLをグループに追加</h3>
       </Typography>
       <Stack direction="row" spacing={5}>
         <TextField
@@ -63,7 +65,7 @@ const CreateTabUrlComponent = (props: any) => {
 
             <Select
               labelId="simple-select-label"
-              defaultValue={tabGroup[0].tabGroupName}
+              value={selectedTabGroup}
               label="グループ名"
               onChange={(e) => setSelectedTabGroup(e.target.value)}
               data-testid="groupSelect"
@@ -79,7 +81,9 @@ const CreateTabUrlComponent = (props: any) => {
             </Select>
           </FormControl>
         ) : (
-          <div>グループが作成されていません</div>
+          <div style={{ textAlign: "center" }}>
+            グループが作成されていません
+          </div>
         )}
 
         <Button
