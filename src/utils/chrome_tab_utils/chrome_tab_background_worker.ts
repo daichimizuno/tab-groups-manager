@@ -2,9 +2,6 @@ import { Color, TabGroup } from "../../dao/chrome_storage_access";
 
 export const getAllInWindow = async (): Promise<chrome.tabs.Tab[]> => {
   const tabs = await chrome.tabs.query({ currentWindow: true });
-  tabs.forEach((tab) => {
-    console.log(`tab : ${tab.title}`);
-  });
   return tabs;
 };
 
@@ -35,7 +32,6 @@ const openTab = (color: Color, title: string, urls: string[]) => {
 };
 
 chrome.runtime.onMessage.addListener((tabGroup: TabGroup[]) => {
-  console.log(`message request: ${JSON.stringify(tabGroup)}`);
   tabGroup.forEach((tab) => {
     openTab(tab.tabColor, tab.tabGroupName, tab.urls);
   });

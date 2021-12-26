@@ -40,7 +40,7 @@ const CreateTabGroupComponent = (props: any) => {
 
   return (
     <>
-      <Typography data-testid="title">
+      <Typography component={"span"} data-testid="title">
         <h3>新しいタブグループを作成</h3>
       </Typography>
       <Stack direction="row" spacing={5}>

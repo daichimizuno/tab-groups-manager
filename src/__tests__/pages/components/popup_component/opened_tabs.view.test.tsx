@@ -52,7 +52,6 @@ describe("PopupTabViewの試験", () => {
         });
         tabs.forEach((tab) => {
           if (tab.title != undefined) {
-            // console.log(screen.getByRole(""))
             const listItemText = screen.getByTestId(tab.title);
             expect(listItemText.textContent).toBe(tab.title);
           }

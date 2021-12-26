@@ -24,8 +24,6 @@ const CreateTabUrlComponent = (props: any) => {
   const _createUrlGroupData = () => {
     if (inputUrl.length > 0) {
       const tabId = _indexTabGroupId(selectedTabGroup);
-      console.log(`tabId : ${tabId}`);
-      console.log(`selectedTabGroup : ${selectedTabGroup}`);
       if (tabId !== -1) {
         props.createUrl(inputUrl, tabId);
         setInputUrl("");
@@ -46,7 +44,7 @@ const CreateTabUrlComponent = (props: any) => {
 
   return (
     <>
-      <Typography data-testid="title">
+      <Typography component={"span"} data-testid="title">
         <h3>URLをグループに追加</h3>
       </Typography>
       <Stack direction="row" spacing={5}>

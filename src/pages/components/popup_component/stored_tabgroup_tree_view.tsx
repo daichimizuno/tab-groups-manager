@@ -33,22 +33,22 @@ const StoredTabGroupTreeView = () => {
           {tabGroups.map((tabGroup: TabGroup) => {
             nodeId = nodeId + 1;
             return (
-              <div>
-                <TreeItem
-                  nodeId={nodeId.toString()}
-                  label={tabGroup.tabGroupName}
-                >
-                  {tabGroup.urls.map((url) => {
-                    nodeId = nodeId + 1;
-                    return (
-                      <TreeItem
-                        nodeId={nodeId.toString()}
-                        label={url}
-                      ></TreeItem>
-                    );
-                  })}
-                </TreeItem>
-              </div>
+              <TreeItem
+                key={nodeId}
+                nodeId={nodeId.toString()}
+                label={tabGroup.tabGroupName}
+              >
+                {tabGroup.urls.map((url) => {
+                  nodeId = nodeId + 1;
+                  return (
+                    <TreeItem
+                      key={nodeId}
+                      nodeId={nodeId.toString()}
+                      label={url}
+                    ></TreeItem>
+                  );
+                })}
+              </TreeItem>
             );
           })}
         </TreeView>
