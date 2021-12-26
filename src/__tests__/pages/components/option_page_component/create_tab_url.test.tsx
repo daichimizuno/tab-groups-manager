@@ -1,6 +1,5 @@
 import {
   fireEvent,
-  getByRole,
   render,
   RenderResult,
   screen,
@@ -90,8 +89,28 @@ describe("CreateTabGroupComponentの試験", () => {
           expect(button).toHaveTextContent(tab.tabGroupName);
         });
       });
-    });
 
+      test("URLとグループ名入力されている状態で、作成ボタンが押されるとcreateUrlが呼ばれ、入力欄が空になる", async () => {
+        const textbox = screen.getByRole("textbox", { name: "URL" });
+        fireEvent.input(textbox, {
+          target: {
+            value: "https://google.com",
+          },
+        });
+        expect(textbox).toHaveValue("https://google.com");
+
+        const groupButton = screen.getByRole("button", { name: "グループ名" });
+        expect(groupButton).toBeInTheDocument();
+        expect(groupButton).toBeVisible();
+
+        const button = component.getByRole("button", { name: "作成" });
+        fireEvent.click(button);
+
+        expect(createUrl).toHaveBeenCalled();
+        expect(createUrl).toHaveBeenCalledTimes(1);
+        expect(textbox).toHaveValue("");
+      });
+    });
     describe('準正常系"', () => {
       test("urlが入力されていない状態で、作成ボタンが押されるとcreateUrlが呼ばれないこと", async () => {
         const button = component.getByRole("button", { name: "作成" });

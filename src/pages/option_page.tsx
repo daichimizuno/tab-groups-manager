@@ -85,7 +85,7 @@ const Options: React.FC = () => {
 
   return (
     <>
-      <Box m={2} pt={3}>
+      <Box m={2}>
         <CreateTabGroupComponent
           createTab={(groupName: string, groupColor: Color) =>
             createTabGroup(groupName, groupColor)

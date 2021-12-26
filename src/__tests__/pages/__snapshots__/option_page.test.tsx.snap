@@ -2,13 +2,15 @@
 
 exports[`option_pageの試験 コンポーネントテスト スナップショットが前回の結果と一致しているかどうか 1`] = `
 <div
-  className="MuiBox-root css-6tberd"
+  className="MuiBox-root css-1c5ij41"
 >
   <p
-    className="MuiTypography-root MuiTypography-body1 css-1yryl06-MuiTypography-root"
+    className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
-    新しいタブグループを作成
+    <h3>
+      新しいタブグループを作成
+    </h3>
   </p>
   <div
     className="css-18wdohr-MuiStack-root"
@@ -158,10 +160,12 @@ exports[`option_pageの試験 コンポーネントテスト スナップショ�
     </button>
   </div>
   <p
-    className="MuiTypography-root MuiTypography-body1 css-4oopdw-MuiTypography-root"
+    className="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     data-testid="title"
   >
-    URLをグループに追加
+    <h3>
+      URLをグループに追加
+    </h3>
   </p>
   <div
     className="css-18wdohr-MuiStack-root"
@@ -210,7 +214,13 @@ exports[`option_pageの試験 コンポーネントテスト スナップショ�
         </fieldset>
       </div>
     </div>
-    <div>
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
       グループが作成されていません
     </div>
     <button

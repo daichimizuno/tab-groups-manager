@@ -1,6 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import {
   Button,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -39,8 +40,8 @@ const CreateTabGroupComponent = (props: any) => {
 
   return (
     <>
-      <Typography data-testid="title" mb={4}>
-        新しいタブグループを作成
+      <Typography data-testid="title">
+        <h3>新しいタブグループを作成</h3>
       </Typography>
       <Stack direction="row" spacing={5}>
         <TextField

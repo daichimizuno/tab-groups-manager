@@ -8,7 +8,9 @@ import Box from "@mui/material/Box";
 import { purple } from "@mui/material/colors";
 import Tab from "@mui/material/Tab";
 import React, { useEffect, useState } from "react";
-import { TabGroup } from "../../../dao/chrome_storage_access";
+import ChromeStorageAccess, {
+  TabGroup,
+} from "../../../dao/chrome_storage_access";
 import { getAllInWindow } from "../../../utils/chrome_tab_utils/chrome_tab_background_worker";
 import ChromeTabSendMessage from "../../../utils/chrome_tab_utils/chrome_tab_send_message";
 import OpenedTabView from "./opened_tabs_view";
@@ -30,6 +32,7 @@ const PopupTabView = ({ tabGroups }: PopupTabViewProps) => {
   const [tabContextValue, setTabContextValue] = useState("1");
   const [openedTabs, setOpenedTabs] = useState<chrome.tabs.Tab[]>([]);
   const chromeTabSendMessage = new ChromeTabSendMessage();
+  const chromeStorageAccess = new ChromeStorageAccess();
 
   useEffect(() => {
     getTabs();
@@ -44,8 +47,8 @@ const PopupTabView = ({ tabGroups }: PopupTabViewProps) => {
     setTabContextValue(newValue);
   };
 
-  const openTabGroups = () => {
-    console.log(JSON.stringify(tabGroups));
+  const openTabGroups = async () => {
+    const tabGroups = await chromeStorageAccess.getAllTabGroup();
     if (tabGroups !== undefined && tabGroups.length > 0) {
       chromeTabSendMessage.createTabGroupsSendMessage(tabGroups);
     }
