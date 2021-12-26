@@ -51,6 +51,8 @@ const Options: React.FC = () => {
   };
 
   const createUrl = async (url: string, groupNumber: number) => {
+    console.log(`url : ${url}`);
+    console.log(`groupNumber : ${groupNumber}`);
     await chromeStorageAccess.addUrlToTabGroup(url, groupNumber);
     syncTabGroup();
     deleteAnotherAlert();
