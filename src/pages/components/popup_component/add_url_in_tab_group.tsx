@@ -98,7 +98,9 @@ const AddUrlInTabGroup = ({
                 >
                   タブグループを作る
                 </Button>
-                <Button variant="outlined">戻る</Button>
+                <Button variant="outlined" onClick={() => handleClose()}>
+                  戻る
+                </Button>
               </Stack>
             </div>
           )}

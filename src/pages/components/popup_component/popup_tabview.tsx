@@ -19,8 +19,6 @@ type PopupTabViewProps = {
 };
 
 const SettingPageButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(purple[500]),
-  backgroundColor: purple[500],
   "&:hover": {
     backgroundColor: purple[700],
   },
