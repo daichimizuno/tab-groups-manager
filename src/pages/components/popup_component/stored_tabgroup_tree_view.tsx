@@ -14,7 +14,10 @@ const StoredTabGroupTreeView = () => {
   let nodeId: number = 0;
 
   const getTabGroups = async () => {
-    setTabGroups(await chromeStorageAccess.getAllTabGroup());
+    const tabGroupsFromStorage = await chromeStorageAccess.getAllTabGroup();
+    if (tabGroupsFromStorage !== undefined) {
+      setTabGroups(tabGroupsFromStorage);
+    }
   };
 
   useEffect(() => {
