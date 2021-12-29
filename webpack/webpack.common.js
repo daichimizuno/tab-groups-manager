@@ -6,6 +6,7 @@ const srcDir = path.join(__dirname, "..", "src");
 module.exports = {
   entry: {
     popup: path.join(srcDir, "pages/popup.tsx"),
+    popup_tabview: path.join(srcDir,"pages/components/popup_component/popup_tabview.tsx"),
     options: path.join(srcDir, "pages/options_root.tsx"),
     option_page: path.join(srcDir, "pages/option_page.tsx"),
     storage_key: path.join(srcDir, "dao/storage_keys.ts"),
