@@ -43,7 +43,7 @@ const AddUrlInTabGroup = ({
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          {tabGroup.length !== 0 ? (
+          {tabGroup !== undefined && tabGroup.length !== 0 ? (
             <div>
               <Stack spacing={3}>
                 <h3 id="parent-modal-title">{title}をタブグループに追加</h3>
