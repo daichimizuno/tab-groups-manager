@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Tab Group Manager",
   "description": "タブグループを保存し、いつでも開く事ができる拡張です。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
@@ -16,8 +16,10 @@
   "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
   "content_scripts": [
     {
+      "all_frames": false,
       "matches": ["<all_urls>"],
-      "js": ["js/vendor.js"]
+      "js": ["js/vendor.js"],
+      "run_at": "document_end"
     }
   ],
   "permissions": ["storage", "tabGroups", "tabs"],
