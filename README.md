@@ -1,46 +1,26 @@
-# Chrome Extension TypeScript Starter
+[![build](https://github.com/daichimizuno/tab-group-manager/actions/workflows/build.yml/badge.svg)](https://github.com/daichimizuno/tab-group-manager/actions/workflows/build.yml) ![GitHub](https://img.shields.io/github/license/daichimizuno/tab-group-manager)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/v/fhknndpocmcojcgplkllonaijipelilj)
+# Tab Group Manager
 
-![build](https://github.com/daichimizuno/tab-group-manager/workflows/)
+Chrome Extension to manage chrome tab group
 
-Chrome Extension, TypeScript and Visual Studio Code
+# Main Feature
+- Manage chrome tab group
+- Open stored chrome tab group setting
+- Add url to stored tab group from opened current tabs
 
-## Prerequisites
+# Getting Started
 
-* [node + npm](https://nodejs.org/) (Current Version)
+## Requirement
 
-## Option
+- node 12, 14, 16
+- npm
 
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
-## Project Structure
-
-* src/typescript: TypeScript source files
-* src/assets: static files
-* dist: Chrome Extension directory
-* dist/js: Generated JavaScript files
-
-## Setup
+## Installation
 
 ```
 npm install
 ```
-
-## Import as Visual Studio Code project
-
-...
 
 ## Build
 
@@ -48,23 +28,30 @@ npm install
 npm run build
 ```
 
-## Build in watch mode
-
-### terminal
-
-```
-npm run watch
-```
-
-### Visual Studio Code
-
-Run watch mode.
-
-type `Ctrl + Shift + B`
-
 ## Load extension to chrome
 
 Load `dist` directory
 
 ## Test
-`npx jest` or `npm run test`
+
+```
+npm run test
+```
+
+# Includes the following
+
+- TypeScript
+- Webpack
+- React
+- Jest
+- Example Code
+  - Chrome Storage
+  - Options Version 2
+  - content script
+  - count up badge number
+  - background
+
+# License
+This project is licensed under the MIT License - see the [LICENSE.md(https://github.com/daichimizuno/tab-group-manager/blob/master/LICENSE) file for details
+
+
