@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Tab Group Manager",
-  "description": "タブグループを保存し、いつでも開く事ができる拡張です。",
-  "version": "1.0.2",
+  "description": "タブグループを保存・管理し、簡単に追加・復元できる拡張機能です。",
+  "version": "1.0.3",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopupTabViewの試験 コンポーネントテスト 正常系 スナップショットが前回の結果と一致しているかどうか 1`] = `
+<h3>
+  まだタブグループが作成されていません
+</h3>
+`;
