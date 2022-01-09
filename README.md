@@ -1,6 +1,6 @@
 [![build](https://github.com/daichimizuno/tab-group-manager/actions/workflows/build.yml/badge.svg)](https://github.com/daichimizuno/tab-group-manager/actions/workflows/build.yml) ![GitHub](https://img.shields.io/github/license/daichimizuno/tab-group-manager)
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/v/fhknndpocmcojcgplkllonaijipelilj)
-# Tab Group Manager
+# Tab Groups Manager
 
 Chrome Extension to manage chrome tab group
 
