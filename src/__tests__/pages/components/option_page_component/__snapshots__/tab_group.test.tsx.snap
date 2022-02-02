@@ -11,12 +11,7 @@ Array [
     </h3>
   </span>,
   <div
-    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
-    style={
-      Object {
-        "marginBottom": 30,
-      }
-    }
+    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root makeStyles-container-1 css-11xur9t-MuiPaper-root-MuiTableContainer-root"
   >
     <div />
     <table
@@ -33,13 +28,8 @@ Array [
         >
           <th
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1ndpvdd-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-smallCell-2 css-1ndpvdd-MuiTableCell-root"
             scope="col"
-            style={
-              Object {
-                "minWidth": 100,
-              }
-            }
           >
             <h3>
               削除
@@ -47,13 +37,17 @@ Array [
           </th>
           <th
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1ndpvdd-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-smallCell-2 css-1ndpvdd-MuiTableCell-root"
             scope="col"
-            style={
-              Object {
-                "minWidth": 300,
-              }
-            }
+          >
+            <h3>
+              設定変更
+            </h3>
+          </th>
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-largeCell-4 css-1ndpvdd-MuiTableCell-root"
+            scope="col"
           >
             <h3>
               タブグループ名
@@ -61,13 +55,8 @@ Array [
           </th>
           <th
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1ndpvdd-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-mediumCell-3 css-1ndpvdd-MuiTableCell-root"
             scope="col"
-            style={
-              Object {
-                "minWidth": 200,
-              }
-            }
           >
             <h3>
               タブ色
@@ -89,13 +78,13 @@ Array [
         role={null}
       >
         <tr
-          className="MuiTableRow-root css-34nofg-MuiTableRow-root"
-          onClick={[Function]}
+          className="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
           role="checkbox"
         >
           <td
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium css-g9ktl7-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium makeStyles-smallCell-2 css-g9ktl7-MuiTableCell-root"
+            onClick={[Function]}
           >
             <span
               className="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
@@ -114,7 +103,6 @@ Array [
               tabIndex={null}
             >
               <input
-                aria-labelledby="enhanced-table-checkbox-0"
                 checked={false}
                 className="PrivateSwitchBase-input css-1m9pwf3"
                 data-indeterminate={false}
@@ -134,9 +122,45 @@ Array [
               </svg>
             </span>
           </td>
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-smallCell-2 css-1yhpg23-MuiTableCell-root"
+          >
+            <button
+              className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-1kuq5xv-MuiButtonBase-root-MuiIconButton-root"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onContextMenu={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="SettingsIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                />
+              </svg>
+            </button>
+          </td>
           <th
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingNone MuiTableCell-sizeMedium css-xp0e6b-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingNone MuiTableCell-sizeMedium makeStyles-largeCell-4 css-xp0e6b-MuiTableCell-root"
             id="enhanced-table-checkbox-0"
             scope="row"
           >
@@ -146,7 +170,7 @@ Array [
           </th>
           <td
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1yhpg23-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-mediumCell-3 css-1yhpg23-MuiTableCell-root"
           >
             <h4>
               grey
@@ -167,13 +191,13 @@ Array [
           </td>
         </tr>
         <tr
-          className="MuiTableRow-root css-34nofg-MuiTableRow-root"
-          onClick={[Function]}
+          className="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
           role="checkbox"
         >
           <td
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium css-g9ktl7-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingCheckbox MuiTableCell-sizeMedium makeStyles-smallCell-2 css-g9ktl7-MuiTableCell-root"
+            onClick={[Function]}
           >
             <span
               className="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
@@ -192,7 +216,6 @@ Array [
               tabIndex={null}
             >
               <input
-                aria-labelledby="enhanced-table-checkbox-1"
                 checked={false}
                 className="PrivateSwitchBase-input css-1m9pwf3"
                 data-indeterminate={false}
@@ -212,9 +235,45 @@ Array [
               </svg>
             </span>
           </td>
+          <td
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-smallCell-2 css-1yhpg23-MuiTableCell-root"
+          >
+            <button
+              className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-1kuq5xv-MuiButtonBase-root-MuiIconButton-root"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onContextMenu={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="SettingsIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                />
+              </svg>
+            </button>
+          </td>
           <th
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingNone MuiTableCell-sizeMedium css-xp0e6b-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-paddingNone MuiTableCell-sizeMedium makeStyles-largeCell-4 css-xp0e6b-MuiTableCell-root"
             id="enhanced-table-checkbox-1"
             scope="row"
           >
@@ -224,7 +283,7 @@ Array [
           </th>
           <td
             aria-sort={null}
-            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1yhpg23-MuiTableCell-root"
+            className="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium makeStyles-mediumCell-3 css-1yhpg23-MuiTableCell-root"
           >
             <h4>
               red

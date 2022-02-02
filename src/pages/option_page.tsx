@@ -6,7 +6,7 @@ import ChromeStorageAccess, {
 } from "../dao/chrome_storage_access";
 import { getAllInWindow } from "../utils/chrome_tab_utils/chrome_tab_background_worker";
 import ChromeTabSendMessage from "../utils/chrome_tab_utils/chrome_tab_send_message";
-import CreateResultAlert from "./components/alerts/create_result_alert";
+import CreateResultAlert from "./components/dialogs/create_result_alert";
 import CreateTabGroupComponent from "./components/option_page_component/create_tab_group";
 import CreateTabUrlComponent from "./components/option_page_component/create_tab_url";
 import TabGroupComponent from "./components/option_page_component/tab_group";
