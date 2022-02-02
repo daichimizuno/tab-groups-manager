@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import React from "react";
 import renderer, { act, ReactTestRendererJSON } from "react-test-renderer";
-import DeleteAlert from "../../../../pages/components/alerts/delete_alert";
+import DeleteAlert from "../../../../pages/components/dialogs/delete_alert";
 
 beforeEach(() => {
   jest.resetAllMocks();

@@ -81,6 +81,17 @@ export default class ChromeStorageAccess {
     }
   };
 
+  changeTabGroup = async(index:number ,groupName: string, color:Color) => {
+    const tabGroups = await this.getAllTabGroup()
+    tabGroups[index].tabGroupName = groupName
+    tabGroups[index].tabColor = color
+
+    await chrome.storage.sync.set(
+      { tabGroup: tabGroups },
+      async () => {}
+    );
+  }
+
   deleteTabGroup = async (tabNames: string[]) => {
     const tabGroupData = ((await this.getAllTabGroup()) as TabGroup[]) || [];
 
