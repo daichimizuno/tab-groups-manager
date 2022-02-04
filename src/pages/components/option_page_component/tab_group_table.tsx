@@ -52,22 +52,26 @@ const DialogType = {
 } as const
 type DialogType = typeof DialogType[keyof typeof DialogType]
 
-const TabGroupTable = (props: any) => {
+type Props = {
+  tabGroup:TabGroup[],
+  deleteTabGroup: (name:string[]) => void
+  changedTabGroup: () => void
+}
+
+const TabGroupTable = (props: Props) => {
+  let tabGroups = props.tabGroup
+  const deleteTabGroup = props.deleteTabGroup
+  const changedTabGroup = props.changedTabGroup
+
   const chromeStorageAccess = new ChromeStorageAccess()
   const [selected, setSelected] = useState<string[]>([])
-  const [tabGroups, setTabGroups] = useState<TabGroup[]>(
-    props.tabGroup as TabGroup[]
-  )
   const [changeTabGroupSelected, setChangeTabGroupSelected] =
     useState<number>(0)
   const [openDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false)
   const [openChangeTabGroupDialog, setOpenChangeTabGroupDialog] =
     useState<boolean>(false)
 
-  const deleteTabGroup = props.deleteTabGroup
   const classes = tableStyles()
-
-  useEffect(() => {}, [tabGroups])
 
   const showDialog = (type: DialogType, index: number) => {
     if (type === DialogType.DELETE) {
@@ -98,10 +102,11 @@ const TabGroupTable = (props: any) => {
     console.log(`before tabGroup ${JSON.stringify(tabGroups)}`)
     await chromeStorageAccess.changeTabGroup(index, name, color as Color)
     const newTabGroups = await chromeStorageAccess.getAllTabGroup()
-    setTabGroups(newTabGroups)
+    tabGroups = newTabGroups
     console.log(`after tabGroup ${JSON.stringify(tabGroups)}`)
 
     setOpenChangeTabGroupDialog(false)
+    changedTabGroup()
   }
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1

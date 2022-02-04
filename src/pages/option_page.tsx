@@ -1,84 +1,88 @@
-import Box from "@mui/system/Box";
-import React, { useEffect, useState } from "react";
+import Box from '@mui/system/Box'
+import React, { useEffect, useState } from 'react'
 import ChromeStorageAccess, {
   Color,
-  TabGroup,
-} from "../dao/chrome_storage_access";
-import { getAllInWindow } from "../utils/chrome_tab_utils/chrome_tab_background_worker";
-import ChromeTabSendMessage from "../utils/chrome_tab_utils/chrome_tab_send_message";
-import CreateResultAlert from "./components/dialogs/create_result_alert";
-import CreateTabGroupComponent from "./components/option_page_component/create_tab_group";
-import CreateTabUrlComponent from "./components/option_page_component/create_tab_url";
-import TabGroupComponent from "./components/option_page_component/tab_group";
+  TabGroup
+} from '../dao/chrome_storage_access'
+import { getAllInWindow } from '../utils/chrome_tab_utils/chrome_tab_background_worker'
+import ChromeTabSendMessage from '../utils/chrome_tab_utils/chrome_tab_send_message'
+import CreateResultAlert from './components/dialogs/create_result_alert'
+import CreateTabGroupComponent from './components/option_page_component/create_tab_group'
+import CreateTabUrlComponent from './components/option_page_component/create_tab_url'
+import TabGroupComponent from './components/option_page_component/tab_group'
 
-export const chromeStorageStatus = ["Success", "Failed", "Nothing"] as const;
+export const chromeStorageStatus = ['Success', 'Failed', 'Nothing'] as const
 type ChromeStorageStatus =
-  typeof chromeStorageStatus[keyof typeof chromeStorageStatus];
+  typeof chromeStorageStatus[keyof typeof chromeStorageStatus]
 
 const Options: React.FC = () => {
-  const chromeStorageAccess = new ChromeStorageAccess();
-  const chromeTabAccess = new ChromeTabSendMessage();
+  const chromeStorageAccess = new ChromeStorageAccess()
+  const chromeTabAccess = new ChromeTabSendMessage()
 
   const [successAddNewTabGroup, setSuccessAddNewTabGroup] =
-    useState<ChromeStorageStatus>("Nothing");
+    useState<ChromeStorageStatus>('Nothing')
 
   // DB上のタブグループを保存するための変数
-  const [tabGroup, setTabGroup] = useState<TabGroup[]>();
+  const [tabGroup, setTabGroup] = useState<TabGroup[]>()
 
   // DB上のTabGroupデータにView側のリストを依存させる
   useEffect(() => {
-    getAllInWindow();
-    getTabGroupData();
-  }, [tabGroup]);
+    getAllInWindow()
+    getTabGroupData()
+  }, [tabGroup])
 
   // DBとのTabGroupデータを同期させる
   const syncTabGroup = () => {
-    getTabGroupData();
-  };
+    getTabGroupData()
+  }
+
+  const changedTabGroup  = () => {
+    syncTabGroup()
+  }
 
   const createTabGroup = async (groupName: string, groupColor: Color) => {
     const success = await chromeStorageAccess.addNewTabGroup(
       groupName,
       groupColor
-    );
+    )
     if (success) {
-      setSuccessAddNewTabGroup("Success");
+      setSuccessAddNewTabGroup('Success')
     } else {
-      setSuccessAddNewTabGroup("Failed");
+      setSuccessAddNewTabGroup('Failed')
     }
-    syncTabGroup();
-  };
+    syncTabGroup()
+  }
 
   const createUrl = async (url: string, groupNumber: number) => {
-    await chromeStorageAccess.addUrlToTabGroup(url, groupNumber);
-    syncTabGroup();
-    deleteAnotherAlert();
-  };
+    await chromeStorageAccess.addUrlToTabGroup(url, groupNumber)
+    syncTabGroup()
+    deleteAnotherAlert()
+  }
 
   const getTabGroupData = async () => {
-    let returnTabGroup = await chromeStorageAccess.getAllTabGroup();
+    let returnTabGroup = await chromeStorageAccess.getAllTabGroup()
     if (JSON.stringify(tabGroup) !== JSON.stringify(returnTabGroup)) {
-      setTabGroup(returnTabGroup);
+      setTabGroup(returnTabGroup)
     }
-  };
+  }
 
   const haveTabGroup = (): boolean => {
     if (tabGroup !== undefined && tabGroup.length !== 0) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
-  };
+  }
 
   // 他のアラートは全て非表示にする
   const deleteAnotherAlert = () => {
-    setSuccessAddNewTabGroup("Nothing");
-  };
+    setSuccessAddNewTabGroup('Nothing')
+  }
 
   const deleteTabGroup = async (tabNames: string[]) => {
-    await chromeStorageAccess.deleteTabGroup(tabNames);
-    syncTabGroup();
-  };
+    await chromeStorageAccess.deleteTabGroup(tabNames)
+    syncTabGroup()
+  }
 
   return (
     <>
@@ -116,13 +120,14 @@ const Options: React.FC = () => {
           <TabGroupComponent
             tabGroup={tabGroup}
             deleteTabGroup={(tabNames: string[]) => deleteTabGroup(tabNames)}
+            changedTabGroup={() => changedTabGroup()}
           />
         ) : (
           <div></div>
         )}
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default Options;
+export default Options
